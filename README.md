@@ -6,6 +6,7 @@ Austin](http://cocoaconf.com/austin-2014/sessions/enemy-of-state) in April 2014.
 ## Outline
 
 - What is state?
+  - In-place changes (mutation)
 - Why is state harmful?
   - Out of the Tar Pit
   - State introduces exponential complexity
