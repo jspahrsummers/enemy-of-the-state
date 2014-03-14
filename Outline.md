@@ -14,7 +14,8 @@
   - A state represents a value at a point in time, does not model change
     - There's no way to query, e.g., "What are all the values that this variable
       holds over time?"
-  - State often gives rise to ordering issues
+  - State often gives rise to ordering and inconsistency issues
+    - Think about restarting a computer or app to fix an issue (you reset the state)
     - Race conditions: if two threads update a variable "simultaneously," what is its resulting
       value? One update "wins" and we don't get to do anything with the other.
     - Because of this, state makes correct concurrent programming incredibly difficult
