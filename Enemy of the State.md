@@ -191,4 +191,55 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ---
 
+# Values
+# Purity
+# Isolation
+
+^ Although it's not possible to eliminate all state from a Cocoa application, we can try to minimize it (and therefore minimize complexity) as much as possible. Here are three techniques for doing so. Let's go through each one in turn.
+
+---
+
+##  
+## [fit] Values
+## Purity
+## Isolation
+
+---
+
+# Values
+
+- **Structs** and **enums** in Swift
+- Values are **copied**, not shared
+- Immutable*
+
+^ NEED NOTES HERE
+
+---
+
+> But I can set the properties of a struct in Swift! This guy doesn’t know what he’s talking about.
+—You, the audience
+
+---
+
+# “Mutating” a struct in Swift
+
+1. STEPS
+1. GO
+1. HERE
+
+---
+
+## Values
+## [fit] Purity
+## Isolation
+
+---
+
+## Values
+## Purity
+## [fit] Isolation
+##  
+
+---
+
 # [fit] Questions?
