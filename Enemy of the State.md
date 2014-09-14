@@ -229,9 +229,84 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ---
 
+# EXAMPLE OF MUTATING A STRUCT
+
+---
+
+# Why is this important?
+
+- EASIER TO REASON ABOUT VARIABLES
+- THREAD SAFETY
+- NO UNPREDICTABLE CHANGES
+
+---
+
 ## Values
 ## [fit] Purity
 ## Isolation
+
+---
+
+# Pure functions
+
+1. Always return the same result for the same inputs
+1. Must not have _observable_ side effects
+
+^ TALK ABOUT OBSERVABLE EFFECTS (e.g. lazily computed properties, memory allocation)
+
+---
+
+```swift
+// Pure: concatenates two input strings and
+// returns the result.
+func +(lhs: String, rhs: String) -> String
+
+protocol GeneratorType {
+	// Impure: advances to the next element
+	// and returns it.
+	mutating func next() -> Element?
+}
+
+struct Array {
+	// Pure(?)
+	var count: Int { get }
+}
+```
+
+---
+
+# [fit] Impure functions are
+# [fit] surprising
+
+---
+
+# EXAMPLE OF INTERLEAVED GENERATION
+
+---
+
+# Making generators pure
+
+```swift
+protocol GeneratorType {
+	// Pure: returns the next element, and
+	// a new generator that will read the
+	// element after that.
+	func next() -> (Element, Self)?
+}
+```
+
+---
+
+# EXAMPLE OF INTERLEAVED PURE GENERATION
+
+---
+
+# [fit] Pure functions are
+# [fit] easily tested
+
+---
+
+
 
 ---
 
