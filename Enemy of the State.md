@@ -84,7 +84,7 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 
 ![fill](sadmac.png)
 
-^ The biggest problem with state is that it "go bad." Any time you've restarted your computer or an app to fix an issue, you've been a victim of state.
+^ The biggest problem with state is that it can "go bad." Any time you've restarted your computer or an app to fix an issue, you've been a victim of state.
 
 ---
 
