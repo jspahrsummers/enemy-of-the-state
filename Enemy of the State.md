@@ -31,6 +31,8 @@
 # What even is
 # [fit] state?
 
+^ NOTES
+
 ---
 
 # [fit] State
@@ -89,10 +91,14 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 # State is
 # [fit] complex
 
+^ NOTES
+
 ---
 
 # [fit] Complexity
 # [fit] Mixing (“complecting”) concepts or concerns
+
+^ NOTES
 
 ---
 
@@ -103,6 +109,8 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 # [fit] _incidental_ complexity
 
 _See Moseley and Marks' paper, “Out of the Tar Pit”_
+
+^ NOTES
 
 ---
 
@@ -116,12 +124,12 @@ _See Moseley and Marks' paper, “Out of the Tar Pit”_
 
 ^ In fact, state is exponentially complex! As you add each new boolean, you double the total number of states your program can be in. For more complicated data types, the growth in complexity is even more dramatic.
 
-^ GLOBAL STATE?!
-
 ---
 
 # State is just a
 # [fit] glorified cache
+
+^ NOTES
 
 ---
 
@@ -234,12 +242,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ---
 
-# Hey,
-# [fit] state happens
-
----
-
-# Some state is necessary
+# [fit] Hey, state happens
 
 - Preferences
 - Open documents
@@ -318,6 +321,8 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 # [fit] So what?
 
+^ NOTES
+
 ---
 
 # [fit] Values won't change
@@ -354,11 +359,15 @@ println(y)
 
 ![](successkid.jpg)
 
+^ NOTES
+
 ---
 
 ## Values
 ## [fit] Purity
 ## Isolation
+
+^ NOTES
 
 ---
 
@@ -387,10 +396,14 @@ struct Array {
 }
 ```
 
+^ NOTES
+
 ---
 
 # [fit] Impure functions are
 # [fit] surprising
+
+^ NOTES
 
 ---
 
@@ -423,6 +436,8 @@ struct Array {
 ## Purity
 ## [fit] Isolation
 ##  
+
+^ NOTES
 
 ---
 
@@ -527,12 +542,7 @@ class UserViewModel {
 
 ![fit](DARE_logo.png)
 
----
-
-# [fit] Singletons
-# [fit] are global state
-
-![fit](DARE_logo.png)
+^ NOTES
 
 ---
 
@@ -542,10 +552,23 @@ class UserViewModel {
 
 ![fit](DARE_logo.png)
 
+^ NOTES
+
 ---
 
 # [fit] Isolation reduces complexity
 # [fit] Globals compound it
+
+^ NOTES
+
+---
+
+# [fit] Singletons
+# [fit] are global state
+
+![fit](DARE_logo.png)
+
+^ NOTES
 
 ---
 
@@ -568,6 +591,8 @@ class UserViewModel {
 
 # [fit] Minimize state
 # [fit] Minimize complexity
+
+^ NOTES
 
 ---
 
