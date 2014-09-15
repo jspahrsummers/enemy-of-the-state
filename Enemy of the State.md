@@ -78,7 +78,21 @@ a++
 
 _See Rich Hickey’s talk, “Simple Made Easy”_
 
-^ A **simple** design minimizes concepts and concerns. Unfortunately, state makes your code more complex.
+---
+
+# [fit] Easy
+# [fit] _Familiar_ or _approachable_
+
+---
+
+# [fit] Simple
+# [fit] Fewer concepts and concerns
+
+---
+
+# [fit] State is
+# [fit] familiar
+# (but complex)
 
 ---
 
