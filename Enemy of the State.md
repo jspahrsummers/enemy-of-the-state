@@ -131,24 +131,22 @@ _See Moseley and Marks' paper, “Out of the Tar Pit”_
 # State is just a
 # [fit] glorified cache
 
-^ NOTES
+^ For example, a variable caches a single value. You can store into the variable (the cache), invalidate it by resetting the variable to something else, and so forth.
 
----
-
-# EXAMPLE OF CACHED UI STATE
-
-_See Andy Matuschak's post, “Mutability, aliasing, and the caches you didn’t know you had”_
+^ Makes sense. What's the big deal?
 
 ---
 
 > There are only two hard problems in Computer Science: **cache invalidation** and naming things.
 —Phil Karlton
 
-^ User interaction often means recalculating or _invalidating_ some stored state.
+^ Cache invalidation is hard. Really hard. And in a GUI application, user interaction often means having to recalculate or invalidate some stored state.
 
 ---
 
 # EXAMPLE OF INVALIDATING CACHED UI STATE
+
+_See Andy Matuschak's post, “Mutability, aliasing, and the caches you didn’t know you had”_
 
 ---
 
