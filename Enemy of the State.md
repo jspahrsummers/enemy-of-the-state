@@ -91,14 +91,14 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 # State is
 # [fit] complex
 
-^ NOTES
+^ That's a pretty heavy assertion. Before we can decide whether it's true or not, what is complexity?
 
 ---
 
 # [fit] Complexity
 # [fit] Mixing (“complecting”) concepts or concerns
 
-^ NOTES
+^ Using this definition, state is complex because it mixes together completely unrelated components of your application. When the state of one component depends on the state of another, and so on, suddenly all of those components have gotten coupled and tied together, when they really didn't need to be.
 
 ---
 
@@ -110,7 +110,9 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 
 _See Moseley and Marks' paper, “Out of the Tar Pit”_
 
-^ NOTES
+^ Essential complexity refers to the complexity that's inherent to the problem you're trying to solve. If you're writing an app that connects to the internet, for example, you automatically have to deal with all the complexity of networking (even if it's hidden away from you).
+
+^ By contrast, incidental complexity is the complexity that's not actually necessary. It arises solely because of your application architecture, or design choices, or whatever else. State falls into this category, because its complexity is avoidable, as we'll see later.
 
 ---
 
