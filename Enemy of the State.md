@@ -426,10 +426,17 @@ struct Array {
 
 ---
 
-# Single responsibility principle
+# [fit] Objects should have
+# [fit] only one
+# [fit] reason to change
 
-- An object or variable should have only **one** reason to change
-- Each chunk of state should be isolated in its own context
+^ This is known as the Single Responsibility Principle.
+
+---
+
+# Isolate
+# [fit] unrelated
+# pieces of state
 
 ^ The most effective way to simplify state without removing it is to isolate it, so it doesn't get complected with other concerns.
 
@@ -473,7 +480,8 @@ class UserViewModel {
 
 ---
 
-# Stateless core, stateful shell
+# [fit] Stateless core,
+# [fit] stateful shell
 
 - Keep core **domain logic** in completely immutable value types
 - Add **stateful shell objects** with mutable references to the immutable data
@@ -514,11 +522,30 @@ class UserViewModel {
 
 ---
 
-# Globals: Just Say No
+# [fit] Globals:
+# [fit] Just Say No
 
-- **Singletons** are global state
-- Global state gets mixed in to _every_ part of the program, compromising purity
-- While isolation reduces complexity, global state compounds it
+![fit](DARE_logo.png)
+
+---
+
+# [fit] Singletons
+# [fit] are global state
+
+![fit](DARE_logo.png)
+
+---
+
+# [fit] Globals get mixed in to
+# [fit] every part
+# [fit] of your program
+
+![fit](DARE_logo.png)
+
+---
+
+# [fit] Isolation reduces complexity
+# [fit] Globals compound it
 
 ---
 
@@ -532,14 +559,26 @@ class UserViewModel {
 
 ---
 
-# Learning More
+# [fit] Learning More
 
-- Check out ReactiveCocoa
-- Play with purely functional programming languages, like Haskell and Elm
+^ Hopefully this has given you a taste of what's possible outside of the "traditional" stateful approaches to application design. The info out there far exceeds what anyone could present in an hour, so here are some additional resources.
 
-^ ReactiveCocoa (of which I'm an author) offers further mechanisms for minimizing state and complexity. Or just try your hand at pure FP/FRP. Working in a language like Haskell or Elm will open your eyes to how unnecessary state really is. Even if you never use them in a real application, they'll expand your mind and teach you valuable lessons that can be applied to everyday programming.
+---
 
-^ If you want a specific tutorial, I highly recommend Real World Haskell, for a very practical approach to building Real World™ applications in a pure FP language.
+# [fit] Check out ReactiveCocoa
+# [fit] github.com/ReactiveCocoa/ReactiveCocoa
+
+^ ReactiveCocoa (of which I'm an author) offers further mechanisms for minimizing state and complexity. Explaining RAC would take a presentation of its own, but the basic idea is to think of state as "changes over time" instead of in-place updates, which makes it simpler to manage changes in general.
+
+---
+
+# [fit] Haskell
+# [fit] book.realworldhaskell.org
+# [fit]
+# [fit] Elm
+# elm-lang.org
+
+^ Or just try your hand at purely functional programming. Working in a language like Haskell or Elm will open your eyes to how unnecessary state really is. Even if you never use them in a real application, they'll expand your mind and teach you valuable lessons that can be applied to everyday programming.
 
 ---
 
