@@ -120,14 +120,14 @@ _See Moseley and Marks' paper, “Out of the Tar Pit”_
 
 ---
 
-# State is
-# [fit] caching
-
-^ See Andy Matuschak's Quora post, “Mutability, aliasing, and the caches you didn’t know you had”
+# State is just a
+# [fit] glorified cache
 
 ---
 
 # EXAMPLE OF CACHED UI STATE
+
+_See Andy Matuschak's post, “Mutability, aliasing, and the caches you didn’t know you had”_
 
 ---
 
