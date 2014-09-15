@@ -557,6 +557,18 @@ class UserViewModel {
 # Purity
 # Isolation
 
+^ NOTES
+
+---
+
+# [fit] TL;
+# [fit] DR
+
+---
+
+# [fit] Minimize state
+# [fit] Minimize complexity
+
 ---
 
 # [fit] Learning More
