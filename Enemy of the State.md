@@ -280,24 +280,15 @@ struct Array {
 
 ---
 
-# EXAMPLE OF INTERLEAVED GENERATION
+# EXAMPLE OF MANAGED OBJECT VALUEFORKEY
 
 ---
 
-# Making generators pure
-
-```swift
-protocol GeneratorType {
-	// Pure: returns the next element, and
-	// a new generator that will read the
-	// element after that.
-	func next() -> (Element, Self)?
-}
-```
+# MAKING CORE DATA PURE?
 
 ---
 
-# EXAMPLE OF INTERLEAVED PURE GENERATION
+# EXAMPLE OF MANAGED OBJECT VALUEFORKEY
 
 ---
 
@@ -306,7 +297,11 @@ protocol GeneratorType {
 
 ---
 
+# EXAMPLE OF TESTING MANAGED OBJECTS BEFORE
 
+---
+
+# EXAMPLE OF TESTING MANAGED OBJECTS AFTER
 
 ---
 
