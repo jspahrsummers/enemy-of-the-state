@@ -69,10 +69,9 @@ a++
 
 ---
 
-# But
-# [fit] easy
+# [fit] Easy
 # and
-# [fit] simple
+# [fit] Simple
 # are not the same
 
 _See Rich Hickey’s talk, “Simple Made Easy”_
@@ -227,6 +226,8 @@ id viewController = partialMockForViewController();
 
 _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
+![fit](trollface.png)
+
 ^ This (slightly modified) test verifies that a view controller's NSFetchedResultsController successfully updates after a managed object is deleted from the context.
 
 ^ As you can see, it uses a lot of mocks and stubs to avoid actually manipulating a database (which is a form of state). Stateless code requires less mocking and stubbing, since the output of a method should only depend on its input!
@@ -270,13 +271,29 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 ## Purity
 ## Isolation
 
+^ NOTES?
+
 ---
 
-# Values
+# [fit] Structs
+# [fit] Enums
 
-- **Structs** and **enums** in Swift
-- Values are **copied**, not shared
-- Immutable*
+^ These are Swift's value types. Classes, by contrast, are reference types.
+
+---
+
+# [fit] Copied
+# (not shared)
+
+^ One of the key attributes of a value type is that instances are copied when assigned to variables, passed to methods, etc., unlike a reference type, where a reference to the existing instance is passed instead.
+
+^ For example, this means that modifying a struct does not affect preexisting copies of that struct. We'll see why this is important shortly.
+
+---
+
+# Value types are
+# [fit] immutable
+# in Swift
 
 ^ NEED NOTES HERE
 
@@ -299,11 +316,43 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ---
 
-# Why is this important?
+# [fit] So what?
 
-- EASIER TO REASON ABOUT VARIABLES
-- THREAD SAFETY
-- NO UNPREDICTABLE CHANGES
+---
+
+# [fit] Values won't change
+# [fit] unpredictably
+
+^ NOTES
+
+---
+
+# [fit] Values are automatically
+# [fit] thread safe
+
+^ NOTES
+
+---
+
+# Values are predictable
+
+```swift
+let value = self.myData
+
+let x = value.someInt
+println(x)
+```
+
+**==> 5**
+
+```swift
+let y = value.someInt
+println(y)
+```
+
+**==> still 5!**
+
+![](successkid.jpg)
 
 ---
 
