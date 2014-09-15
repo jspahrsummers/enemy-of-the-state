@@ -11,21 +11,33 @@
 
 ---
 
-# Why this talk?
+# [fit] Programming is all about
+# [fit] abstraction
 
-- At its heart, programming is all about **abstraction**
-- We all want to be using the _best possible_ abstractions for building software
-
-^ I could talk about concrete things, like RAC or how we build native apps at GitHub. However, I want to impart abstract knowledge, so this will be a less concrete talk than you're used to.
+^ Why this talk? I could talk about concrete things, like RAC or how we build native apps at GitHub. However, I want to impart abstract knowledge, so this will be a less concrete talk than you're used to.
 
 ^ Don't let your eyes glaze over, though, because programming is all about abstraction, and an understanding of theory is hugely important for solving practical, real world problems.
 
 ---
 
-# What even is state?
+# [fit] We want to be using the
+# [fit] best possible
+# [fit] abstractions for development
 
-- **State** refers to a program's stored values at any given time
-- **Mutation** is the act of updating some state in-place
+^ The right abstractions can reduce complexity, increase reliability and maintainability, and give you greater confidence in the correctness of your code.
+
+---
+
+# What even is
+# [fit] state?
+
+---
+
+# [fit] State
+# [fit] Your stored values at any given time
+# [fit]
+# [fit] Mutation
+# [fit] The act of updating some state in place
 
 ^ A value is unchanging, it has no concept of time. State consists of all the values you currently have.
 
@@ -50,14 +62,22 @@ a++
 
 ---
 
-# State is easy
+# State is
+# [fit] easy
 
-- But **easy** and **simple** are not the same
-- A **simple** design minimizes concepts and concerns
+^ State is easy because it's familiar, or approachable. We first learned how to program statefully, so it comes naturally to us.
+
+---
+
+# But
+# [fit] easy
+# and
+# [fit] simple
+# are not the same
 
 _See Rich Hickey’s talk, “Simple Made Easy”_
 
-^ State is easy because it's familiar, or approachable. We first learned how to program statefully, so it comes naturally to us, but that doesn't make it right.
+^ A **simple** design minimizes concepts and concerns. Unfortunately, state makes your code more complex.
 
 ---
 
@@ -67,11 +87,21 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 
 ---
 
-# State is complex
+# State is
+# [fit] complex
 
-- **Complexity** arises from multiple concepts or concerns being interleaved
-- All systems have some level of **essential** complexity
-- However, state also adds **incidental** complexity
+---
+
+# [fit] Complexity
+# [fit] Mixing (“complecting”) concepts or concerns
+
+---
+
+# All systems have
+# [fit] _essential_ complexity
+# [fit]
+# State also adds
+# [fit] _incidental_ complexity
 
 _See Moseley and Marks' paper, “Out of the Tar Pit”_
 
