@@ -312,4 +312,92 @@ struct Array {
 
 ---
 
+# Single responsibility principle
+
+- An object or variable should have only **one** reason to change
+- Each chunk of state should be isolated in its own context
+
+^ The most effective way to simplify state without removing it is to isolate it, so it doesn't get complected with other concerns.
+
+---
+
+# Isolation Done Wrong™
+
+```swift
+class MyViewController: UIViewController {
+	// When logging in
+	var username: String?
+	var password: String?
+
+	// After logging in
+	var loggedInUser: User?
+}
+```
+
+^ This is an example of poor isolation. The view controller is "complecting" the concern of logging in with the concern of knowing who's logged in. As the implementation grows to manage both of these concerns, it becomes difficult to reason about them separately.
+
+---
+
+# Isolation Done Right™
+
+```swift
+// For logging in
+class LoginViewModel {
+	var username: String?
+	var password: String?
+
+	func logIn() -> UserViewModel?
+}
+
+// After logging in
+class UserViewModel {
+	var loggedInUser: User?
+}
+```
+
+^ By splitting these two concerns out into separate objects, the respective pieces of state don't interact directly with each other, and the relationships between them become more explicit.
+
+---
+
+# Stateless core, stateful shell
+
+- Keep core **domain logic** in completely immutable value types
+- Add **stateful shell objects** with mutable references to the immutable data
+
+_See Gary Bernhardt’s talk, “Boundaries”_
+
+^ Basically, use value types and pure algorithms for as much as possible. Once you get to the point where you need some state, wrap it around the immutable stuff. Your stateful shell can transform the values and update references to them.
+
+---
+
+# Model-View-ViewModel
+
+IMAGE HERE
+
+^ Model-View-ViewModel is actually a great example of this "stateless core" design. MVVM (depicted here, on the bottom) involves replacing the omniscient controller of MVC with a less ambitious "view model" object. The view model is actually owned by the view, and behaves like an adapter of the model.
+
+^ The view model is responsible for changing the model, which means you can make the model immutable, and the VM can just apply transformations instead of mutations.
+
+---
+
+# Model-View-ViewModel
+
+```swift
+struct User { … }
+
+class UserViewModel {
+	var loggedInUser: User?
+
+	func logOut() {
+		loggedInUser = nil
+	}
+}
+```
+
+^ Here's an example, using the UserViewModel from before. The User is the stateless core, and the UserViewModel is the stateful shell.
+
+^ Although User is a struct, the view model can still update its `user` property by transforming the struct and keeping the new version. Any consumers that read the property before this point will still retain their version, avoiding scary action at a distance.
+
+---
+
 # [fit] Questions?
