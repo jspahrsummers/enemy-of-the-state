@@ -121,32 +121,51 @@ _See Moseley and Marks' paper, “Out of the Tar Pit”_
 
 ---
 
-# State is a cache
+# State is
+# [fit] caching
 
-- I REALLY HATE THIS SLIDE
-- User interaction often means recalculating or _invalidating_ some stored state
-- Cache invalidation is really, _really_ hard to get right
-
-_See Andy Matuschak's Quora post, “Mutability, aliasing, and the caches you didn’t know you had”_
-
-^ This is true every time any state is aliased, or stored in more than one location. For example, if you have a text field with some content, and then also track some version of that content in your view controller, one of those is effectively a cache for the other.
+^ See Andy Matuschak's Quora post, “Mutability, aliasing, and the caches you didn’t know you had”
 
 ---
 
-# EXAMPLE OF CACHED STATE
+# EXAMPLE OF CACHED UI STATE
 
 ---
 
-# State is nondeterministic
+> There are only two hard problems in Computer Science: **cache invalidation** and naming things.
+—Phil Karlton
 
-- Race conditions can lead to corruption or inconsistent state
-- Variables can change unpredictably from a distance
-
-^ These make code difficult to reason about. For example, if two threads update a variable almost simultaneously, what's the result? Could you figure it out just by reading the code?
+^ User interaction often means recalculating or _invalidating_ some stored state.
 
 ---
 
-# State is nondeterministic
+# EXAMPLE OF INVALIDATING CACHED UI STATE
+
+---
+
+# State is
+# [fit] unpredictable
+
+^ The unpredictability of state makes code extremely hard to reason about.
+
+---
+
+![fit](raceconditions.jpg)
+
+^ We're probably all familiar with race conditions, where multiple threads try to use the same state at the same time. If anything is modifying the state at the same time, you can see inconsistency at best, or corruption at worst.
+
+^ How do you prevent race conditions? You can't really disprove their existence, you can only try your hardest to eliminate them through careful code analysis.
+
+---
+
+> [State is just] spooky action at a distance
+—Albert Einstein (probably)
+
+^ This term of his was actually about quantum entanglement, but the parallels are astounding.
+
+---
+
+# State is unpredictable
 
 ```swift
 let x = self.myInt
@@ -166,14 +185,18 @@ println(y)
 
 ---
 
-# State is hard to test
+# State is
+# [fit] hard to test
 
-- Tests verify that certain inputs result in a certain output
-- State is an _implicit_ input that can change unexpectedly
+---
+
+# [fit] Tests
+# [fit] verify expected outputs for certain inputs
+#
+# [fit] State
+# [fit] is an _implicit_ input that can change unexpectedly
 
 ^ Not only is it complicated to set up a correct initial state for testing, but method calls can change it during the test, which can introduce issues with ordering and repeatability.
-
-^ By contrast, it's much easier to test a pure algorithm, where the output is only determined by its explicit inputs.
 
 ---
 
@@ -210,10 +233,16 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ---
 
-# [fit] Hey, state happens
+# Hey,
+# [fit] state happens
+
+---
+
+# Some state is necessary
 
 - Preferences
-- Open and saved documents
+- Open documents
+- Documents saved to disk
 - In-memory or on-disk caches
 - UI appearance and content
 
@@ -221,11 +250,18 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ---
 
+# [fit] Minimize state
+# [fit] Minimize complexity
+
+^ So although it's not possible to eliminate all state from a Cocoa application, we can try to minimize it (and therefore minimize complexity) as much as possible.
+
+---
+
 # Values
 # Purity
 # Isolation
 
-^ Although it's not possible to eliminate all state from a Cocoa application, we can try to minimize it (and therefore minimize complexity) as much as possible. Here are three techniques for doing so. Let's go through each one in turn.
+^ Here are three of my favorite techniques for minimizing the complexity of state. Let's go through each one in turn.
 
 ---
 
