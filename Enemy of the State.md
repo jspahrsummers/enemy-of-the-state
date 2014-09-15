@@ -400,4 +400,34 @@ class UserViewModel {
 
 ---
 
-# [fit] Questions?
+# Globals: Just Say No
+
+- **Singletons** are global state
+- Global state gets mixed in to _every_ part of the program, compromising purity
+- While isolation reduces complexity, global state compounds it
+
+---
+
+# PASS AROUND INSTANCES INSTEAD
+
+---
+
+# Values
+# Purity
+# Isolation
+
+---
+
+# Learning More
+
+- Check out ReactiveCocoa
+- Play with purely functional programming languages, like Haskell and Elm
+
+^ ReactiveCocoa (of which I'm an author) offers further mechanisms for minimizing state and complexity. Or just try your hand at pure FP/FRP. Working in a language like Haskell or Elm will open your eyes to how unnecessary state really is. Even if you never use them in a real application, they'll expand your mind and teach you valuable lessons that can be applied to everyday programming.
+
+^ If you want a specific tutorial, I highly recommend Real World Haskell, for a very practical approach to building Real World™ applications in a pure FP language.
+
+---
+
+# [fit] Presentation available at
+# [fit] github.com/jspahrsummers/enemy-of-the-state
