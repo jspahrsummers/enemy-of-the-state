@@ -362,10 +362,9 @@ println(y)
 
 ---
 
-# Pure functions
-
-1. Always return the same result for the same inputs
-1. Must not have _observable_ side effects
+# [fit] Pure functions
+# [fit] Same inputs always yield the same result
+# [fit] Must not have _observable_ side effects
 
 ^ TALK ABOUT OBSERVABLE EFFECTS (e.g. lazily computed properties, memory allocation)
 
