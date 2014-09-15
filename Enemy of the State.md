@@ -772,6 +772,15 @@ class UserViewModel {
 
 ---
 
+# [fit] WWDC 2014
+# [fit] Session 229
+# [fit] “Advanced iOS Application
+# [fit] Architecture and Patterns”
+
+^ This talk, by Andy Matuschak and Colin Barrett, covers a lot of similar topics. In particular, they talk a lot about determining "where truth resides" as a strategy for reducing complexity. I highly recommend watching it.
+
+---
+
 # [fit] Check out ReactiveCocoa
 # [fit] github.com/ReactiveCocoa/ReactiveCocoa
 
