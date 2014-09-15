@@ -307,15 +307,185 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ---
 
-# “Mutating” a struct in Swift
+# [fit] “Mutating” a struct in Swift
 
-1. STEPS
-1. GO
-1. HERE
+```swift
+struct Point {
+	var x = 0.0
+	var y = 0.0
+
+	mutating func scale(factor: Double) {
+		self.x *= factor
+		self.y *= factor
+	}
+}
+```
+
+^ Let's go through a simple example. Here's a struct that I've defined for representing geometric points (we'll pretend that CGPoint doesn't already exist). It has some writable coordinates, and a mutating function that scales the point by a given factor.
 
 ---
 
-# EXAMPLE OF MUTATING A STRUCT
+# [fit] “Mutating” a struct in Swift
+
+```swift
+var p = Point(x: 5, y: 10)
+```
+
+^ If we use the var keyword, we can create a point…
+
+---
+
+# [fit] “Mutating” a struct in Swift
+
+```swift
+var p = Point(x: 5, y: 10)
+p.x = 7     // p = (7, 10)
+```
+
+^ And then, seemingly, write straight to it.
+
+---
+
+# [fit] “Mutating” a struct in Swift
+
+```swift
+var p = Point(x: 5, y: 10)
+p.x = 7     // p = (7, 10)
+p.scale(2)  // p = (14, 20)
+```
+
+^ Likewise, we can call our mutating method, and it appears that the point has changed in place. But what does it mean for it to have changed "in place?"
+
+---
+
+# [fit] “Mutating” a struct in Swift
+
+```swift
+var p = Point(x: 5, y: 10)
+let q = p
+```
+
+^ Let's change our example slightly, so that we save the Point into a read-only variable before continuing.
+
+---
+
+# [fit] “Mutating” a struct in Swift
+
+```swift
+var p = Point(x: 5, y: 10)
+let q = p
+
+p.scale(2)  // p = (10, 20)
+            // q = (5, 10)
+```
+
+^ As we would expect with a Swift struct, 'q' retains the original value, while 'p' has been scaled.
+
+---
+
+# [fit] Here's the key:
+
+^ So far, I haven't proved that value types are immutable in Swift. In fact, my examples seem to contradict that notion entirely. But here's the key…
+
+---
+
+# [fit] Variables mutate
+# [fit] Values never change
+
+^ In all of those examples, the _variable_ is being updated to point at a new _value_. When we scale the Point, or change its coordinates, we're really creating a NEW Point, that gets stored into the variable.
+
+---
+
+# [fit] “Mutating” a struct in Swift
+
+```swift
+var p = Point(x: 5, y: 10)
+let q = p
+
+p.scale(2)  // p = (10, 20)
+            // q = (5, 10)
+```
+
+^ Looking at the code again, the only difference between 'p' and 'q' is the variable declaration. We've declared that the variable 'q' may never change. What this really means is that the value _stored in_ 'p' is allowed to be replaced, while the value _stored in_ 'q' is not.
+
+---
+
+# [fit] “Mutating” a struct in Swift
+
+```swift
+var p = Point(x: 5, y: 10)
+let q = p
+
+p.scale(2)  // p = (10, 20)
+            // q = (5, 10)
+
+q.x = 2
+q.scale(2)  // Error!
+```
+
+^ Consequently, any attempts to update the value in 'q' will fail.
+
+---
+
+# [fit] “Mutating” functions
+
+```swift
+func pointByScaling(factor: Double) -> Point {
+	return Point(self.x * factor, self.y * factor)
+}
+
+mutating func scale(factor: Double) {
+	self.x *= factor
+	self.y *= factor
+}
+```
+
+^ To really drive this point home, let's look at how `mutating` functions are actually implemented. We'll contrast our 'scale' function with a non-mutating version, seen here at the top.
+
+---
+
+# [fit] “Mutating” functions
+
+```swift
+func pointByScaling(self: Point, factor: Double) -> Point {
+	return Point(self.x * factor, self.y * factor)
+}
+
+mutating func scale(self: Point, factor: Double) {
+	self.x *= factor
+	self.y *= factor
+}
+```
+
+^ The first realization here is that `self` is actually a magic argument to every instance method. The compiler inserts `self` automatically, so you never see it, but the functions actually look kinda like this under the hood.
+
+^ But wait, Swift arguments are read-only by default, so the mutating method here is actually invalid. It wouldn't be able to write to `self`, much less have those changes saved.
+
+---
+
+# [fit] “Mutating” functions
+
+```swift
+func pointByScaling(self: Point, factor: Double) -> Point {
+	return Point(self.x * factor, self.y * factor)
+}
+
+mutating func scale(inout self: Point, factor: Double) {
+	self.x *= factor
+	self.y *= factor
+}
+```
+
+^ In fact, the mutating method needs an `inout` version of `self`, and this is the key to the whole mutability model. What this function is doing then, is accepting a copy of the Point, transforming it, and then _storing_ it back to the caller.
+
+^ Except storage is a feature of _variables_, not values. We've come full circle. The method is only "mutating" because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so "mutating" methods cannot be used.
+
+---
+
+# [fit] Variables mutate
+# [fit] Values never change
+
+^ This is why value types are so incredibly powerful in Swift. Values won't mutate from underneath you, and you can use `let` to declare variables that don't either.
 
 ---
 
