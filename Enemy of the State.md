@@ -617,7 +617,9 @@ struct Array {
 # [fit] only one
 # [fit] reason to change
 
-^ This is known as the Single Responsibility Principle.
+^ This is known as the Single Responsibility Principle. Another way to state this principle is that a given object should only be in charge of one thing.
+
+^ As an example of violating this principle, view controllers often end up managing a lot of different responsibilities, when really those could be split out into different objects. I'll show one such example in just a bit.
 
 ---
 
