@@ -1,7 +1,7 @@
 # [fit] Enemy of the State
 ### _(Swift edition!)_
 
-^ WHAT I'M TALKING ABOUT
+^ WHAT I’M TALKING ABOUT
 
 ---
 
@@ -14,9 +14,9 @@
 # [fit] Programming is all about
 # [fit] abstraction
 
-^ Why this talk? I could talk about concrete things, like RAC or how we build native apps at GitHub. However, I want to impart abstract knowledge, so this will be a less concrete talk than you're used to.
+^ Why this talk? I could talk about concrete things, like RAC or how we build native apps at GitHub. However, I want to impart abstract knowledge, so this will be a less concrete talk than you’re used to.
 
-^ Don't let your eyes glaze over, though, because programming is all about abstraction, and an understanding of theory is hugely important for solving practical, real world problems.
+^ Don’t let your eyes glaze over, though, because programming is all about abstraction, and an understanding of theory is hugely important for solving practical, real world problems.
 
 ---
 
@@ -33,7 +33,7 @@
 # What even is
 # [fit] state?
 
-^ Now, in _this_ abstract talk, I'm going to explain why state is harmful, and offer some tools (abstractions) to minimize its impact. But, first, we need to be on the same page about what state _is_.
+^ Now, in _this_ abstract talk, I’m going to explain why state is harmful, and offer some tools (abstractions) to minimize its impact. But, first, we need to be on the same page about what state _is_.
 
 ---
 
@@ -69,9 +69,9 @@ a++
 # State is
 # [fit] easy
 
-^ State is easy because it's familiar, or approachable. We first learned how to program statefully, so it comes naturally to us.
+^ State is easy because it’s familiar, or approachable. We first learned how to program statefully, so it comes naturally to us.
 
-^ To use a different example, it's definitely _easy_ to stuff all of your model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary with one kind of structure but get something else).
+^ To use a different example, it’s definitely _easy_ to stuff all of your model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary with one kind of structure but get something else).
 
 ---
 
@@ -102,21 +102,21 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 
 ![fill](sadmac.png)
 
-^ The biggest problem with state is that it can "go bad." Any time you've restarted your computer or an app to fix an issue, you've been a victim of state.
+^ The biggest problem with state is that it can "go bad." Any time you’ve restarted your computer or an app to fix an issue, you’ve been a victim of state.
 
 ---
 
 # State is
 # [fit] complex
 
-^ That's a pretty heavy assertion. Before we can decide whether it's true or not, what is complexity?
+^ That’s a pretty heavy assertion. Before we can decide whether it’s true or not, what is complexity?
 
 ---
 
 # [fit] Complexity
 # [fit] Mixing (“complecting”) concepts or concerns
 
-^ Using this definition, state is complex because it mixes together completely unrelated components of your application. When the state of one component depends on the state of another, and so on, suddenly all of those components have gotten coupled and tied together, when they really didn't need to be.
+^ Using this definition, state is complex because it mixes together completely unrelated components of your application. When the state of one component depends on the state of another, and so on, suddenly all of those components have gotten coupled and tied together, when they really didn’t need to be.
 
 ---
 
@@ -126,11 +126,11 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 # State also adds
 # [fit] _incidental_ complexity
 
-_See Moseley and Marks' paper, “Out of the Tar Pit”_
+_See Moseley and Marks’ paper, “Out of the Tar Pit”_
 
-^ Essential complexity refers to the complexity that's inherent to the problem you're trying to solve. If you're writing an app that connects to the internet, for example, you automatically have to deal with all the complexity of networking (even if it's hidden away from you).
+^ Essential complexity refers to the complexity that’s inherent to the problem you’re trying to solve. If you’re writing an app that connects to the internet, for example, you automatically have to deal with all the complexity of networking (even if it’s hidden away from you).
 
-^ By contrast, incidental complexity is the complexity that's not actually necessary. It arises solely because of your application architecture, or design choices, or whatever else. State falls into this category, because its complexity is avoidable, as we'll see later.
+^ By contrast, incidental complexity is the complexity that’s not actually necessary. It arises solely because of your application architecture, or design choices, or whatever else. State falls into this category, because its complexity is avoidable, as we’ll see later.
 
 ---
 
@@ -151,7 +151,7 @@ _See Moseley and Marks' paper, “Out of the Tar Pit”_
 
 ^ For example, a variable caches a single value. You can store into the variable (the cache), invalidate it by resetting the variable to something else, and so forth.
 
-^ Makes sense. What's the big deal?
+^ Makes sense. What’s the big deal?
 
 ---
 
@@ -164,7 +164,7 @@ _See Moseley and Marks' paper, “Out of the Tar Pit”_
 
 # EXAMPLE OF INVALIDATING CACHED UI STATE
 
-_See Andy Matuschak's post, “Mutability, aliasing, and the caches you didn’t know you had”_
+_See Andy Matuschak’s post, “Mutability, aliasing, and the caches you didn’t know you had”_
 
 ---
 
@@ -177,9 +177,9 @@ _See Andy Matuschak's post, “Mutability, aliasing, and the caches you didn’t
 
 ![fit](raceconditions.jpg)
 
-^ We're probably all familiar with race conditions, where multiple threads try to use the same state at the same time. If anything is modifying the state at the same time, you can see inconsistency at best, or corruption at worst.
+^ We’re probably all familiar with race conditions, where multiple threads try to use the same state at the same time. If anything is modifying the state at the same time, you can see inconsistency at best, or corruption at worst.
 
-^ How do you prevent race conditions? It's very hard to prove their absence, you just have to focus on eliminating them through careful code analysis, which is time-consuming and error-prone. This is a consequence of state.
+^ How do you prevent race conditions? It’s very hard to prove their absence, you just have to focus on eliminating them through careful code analysis, which is time-consuming and error-prone. This is a consequence of state.
 
 ---
 
@@ -254,7 +254,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ![fit](trollface.png)
 
-^ This (slightly modified) test verifies that a view controller's NSFetchedResultsController successfully updates after a managed object is deleted from the context.
+^ This (slightly modified) test verifies that a view controller’s NSFetchedResultsController successfully updates after a managed object is deleted from the context.
 
 ^ As you can see, it uses a lot of mocks and stubs to avoid actually manipulating a database (which is a form of state). Stateless code requires less mocking and stubbing, since the output of a method should only depend on its input!
 
@@ -268,14 +268,14 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 - In-memory or on-disk caches
 - UI appearance and content
 
-^ Most applications require some state, and that's okay. Here are some examples of state being necessary and helpful for solving a particular problem.
+^ Most applications require some state, and that’s okay. Here are some examples of state being necessary and helpful for solving a particular problem.
 
 ---
 
 # [fit] Minimize state
 # [fit] Minimize complexity
 
-^ So although it's not possible to eliminate all state from a Cocoa application, we can try to minimize it (and therefore minimize complexity) as much as possible.
+^ So although it’s not possible to eliminate all state from a Cocoa application, we can try to minimize it (and therefore minimize complexity) as much as possible.
 
 ---
 
@@ -283,7 +283,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 # Purity
 # Isolation
 
-^ Here are three of my favorite techniques for minimizing the complexity of state. Let's go through each one in turn.
+^ Here are three of my favorite techniques for minimizing the complexity of state. Let’s go through each one in turn.
 
 ---
 
@@ -299,7 +299,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 # [fit] Structs
 # [fit] Enums
 
-^ These are Swift's value types, which we can use to create our _own_ values. Classes, by contrast, are reference types.
+^ These are Swift’s value types, which we can use to create our _own_ values. Classes, by contrast, are reference types.
 
 ---
 
@@ -308,7 +308,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ^ One of the key attributes of a value type is that instances are copied when assigned to variables, passed to methods, etc., unlike a reference type, where a reference to the existing instance is passed instead.
 
-^ For example, this means that modifying a struct does not affect preexisting copies of that struct. We'll see why this is important shortly.
+^ For example, this means that modifying a struct does not affect preexisting copies of that struct. We’ll see why this is important shortly.
 
 ---
 
@@ -323,7 +323,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 > But I can set the properties of a struct in Swift! This guy doesn’t know what he’s talking about.
 —You, the audience
 
-^ I've said that values are immutable multiple times now, but it might be hard to see why. Let's dig into an example.
+^ I’ve said that values are immutable multiple times now, but it might be hard to see why. Let’s dig into an example.
 
 ---
 
@@ -341,7 +341,7 @@ struct Point {
 }
 ```
 
-^ Here's a struct that I've defined for representing geometric points (we'll pretend that CGPoint doesn't already exist). It has some writable coordinates, and a mutating function that scales the point by a given factor.
+^ Here’s a struct that I’ve defined for representing geometric points (we’ll pretend that CGPoint doesn’t already exist). It has some writable coordinates, and a mutating function that scales the point by a given factor.
 
 ---
 
@@ -385,7 +385,7 @@ var p = Point(x: 5, y: 10)
 let q = p
 ```
 
-^ Let's change our example slightly, so that we save the Point into a read-only variable before continuing.
+^ Let’s change our example slightly, so that we save the Point into a read-only variable before continuing.
 
 ---
 
@@ -403,16 +403,16 @@ p.scale(2)  // p = (10, 20)
 
 ---
 
-# [fit] Here's the key:
+# [fit] Here’s the key:
 
-^ So far, I haven't proved that value types are immutable in Swift. In fact, my examples seem to contradict that notion entirely. But here's the key…
+^ So far, I haven’t proved that value types are immutable in Swift. In fact, my examples seem to contradict that notion entirely. But here’s the key…
 
 ---
 
 # [fit] Variables mutate
 # [fit] Values never change
 
-^ In all of those examples, the _variable_ is being updated to point at a new _value_. When we scale the Point, or change its coordinates, we're really creating a NEW Point, that gets stored into the variable.
+^ In all of those examples, the _variable_ is being updated to point at a new _value_. When we scale the Point, or change its coordinates, we’re really creating a NEW Point, that gets stored into the variable.
 
 ---
 
@@ -426,7 +426,7 @@ p.scale(2)  // p = (10, 20)
             // q = (5, 10)
 ```
 
-^ Looking at the code again, the only difference between 'p' and 'q' is the variable declaration. We've declared that the variable 'q' may never change. What this really means is that the value _stored in_ 'p' is allowed to be replaced, while the value _stored in_ 'q' is not.
+^ Looking at the code again, the only difference between 'p' and 'q' is the variable declaration. We’ve declared that the variable 'q' may never change. What this really means is that the value _stored in_ 'p' is allowed to be replaced, while the value _stored in_ 'q' is not.
 
 ---
 
@@ -460,7 +460,7 @@ mutating func scale(factor: Double) {
 }
 ```
 
-^ To really drive this point home, let's look at how `mutating` functions are actually implemented. We'll contrast our 'scale' function with a non-mutating version, seen here at the top.
+^ To really drive this point home, let’s look at how `mutating` functions are actually implemented. We’ll contrast our 'scale' function with a non-mutating version, seen here at the top.
 
 ---
 
@@ -479,7 +479,7 @@ mutating func scale(self: Point, factor: Double) {
 
 ^ The first realization here is that `self` is actually a magic argument to every instance method. The compiler inserts `self` automatically, so you never see it, but the functions actually look kinda like this under the hood.
 
-^ But wait, Swift arguments are read-only by default, so the mutating method here is actually invalid. It wouldn't be able to write to `self`, much less have those changes saved.
+^ But wait, Swift arguments are read-only by default, so the mutating method here is actually invalid. It wouldn’t be able to write to `self`, much less have those changes saved.
 
 ---
 
@@ -498,14 +498,14 @@ mutating func scale(inout self: Point, factor: Double) {
 
 ^ In fact, the mutating method needs an `inout` version of `self`, and this is the key to the whole mutability model. What this function is doing then, is accepting a copy of the Point, transforming it, and then _storing_ it back to the caller.
 
-^ Except storage is a feature of _variables_, not values. We've come full circle. The method is only "mutating" because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so "mutating" methods cannot be used.
+^ Except storage is a feature of _variables_, not values. We’ve come full circle. The method is only "mutating" because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so "mutating" methods cannot be used.
 
 ---
 
 # [fit] Variables mutate
 # [fit] Values never change
 
-^ This is why value types are so incredibly powerful in Swift. Values won't mutate from underneath you, and you can use `let` to declare variables that don't either.
+^ This is why value types are so incredibly powerful in Swift. Values won’t mutate from underneath you, and you can use `let` to declare variables that don’t either.
 
 ---
 
@@ -518,7 +518,7 @@ mutating func scale(inout self: Point, factor: Double) {
 # [fit] Values are automatically
 # [fit] thread-safe
 
-^ Unlike variables, which have to be synchronized, values are automatically thread-safe. Changing a variable on one thread does not affect another thread's view of the previous _value_. This is huge—no more race conditions!
+^ Unlike variables, which have to be synchronized, values are automatically thread-safe. Changing a variable on one thread does not affect another thread’s view of the previous _value_. This is huge—no more race conditions!
 
 ---
 
@@ -601,7 +601,7 @@ struct Array {
 
 > Insanity is doing the same thing over and over again but expecting **different results**.
 
-^ It's actually pretty insane that we put up with this. Pure functions are so much simpler and sane.
+^ It’s actually pretty insane that we put up with this. Pure functions are so much simpler and sane.
 
 ---
 
@@ -635,7 +635,7 @@ struct Array {
 ## [fit] Isolation
 ##  
 
-^ As I alluded to before, it's not feasible to eliminate _all_ state from a Cocoa application. Value types and pure algorithms can get you pretty far, but there will be some remainder that "needs" to be stateful.
+^ As I alluded to before, it’s not feasible to eliminate _all_ state from a Cocoa application. Value types and pure algorithms can get you pretty far, but there will be some remainder that "needs" to be stateful.
 
 ^ Still, when dealing with state, we can _isolate_ (or encapsulate) it to reduce its impact on the rest of the program.
 
@@ -647,7 +647,7 @@ struct Array {
 
 ^ This, the Single Responsibility Principle, is a good rule of thumb. To put it another way, each object should only be in charge of _one_ piece of state. Avoid combining the responsibilities for a bunch of state into the same class.
 
-^ As an example of violating this principle, view controllers often end up managing a lot of different responsibilities, when really those could be split out into different objects. I'll show one such example in just a bit.
+^ As an example of violating this principle, view controllers often end up managing a lot of different responsibilities, when really those could be split out into different objects. I’ll show one such example in just a bit.
 
 ---
 
@@ -672,7 +672,7 @@ class MyViewController: UIViewController {
 }
 ```
 
-^ This is an example of poor isolation. The view controller is "complecting" the concern of logging in with the concern of knowing who's logged in. As the implementation grows to manage both of these concerns, it becomes difficult to reason about them separately.
+^ This is an example of poor isolation. The view controller is "complecting" the concern of logging in with the concern of knowing who’s logged in. As the implementation grows to manage both of these concerns, it becomes difficult to reason about them separately.
 
 ---
 
@@ -693,7 +693,7 @@ class UserViewModel {
 }
 ```
 
-^ By splitting these two concerns out into separate objects, the respective pieces of state don't interact directly with each other, and the relationships between them become more explicit.
+^ By splitting these two concerns out into separate objects, the respective pieces of state don’t interact directly with each other, and the relationships between them become more explicit.
 
 ---
 
@@ -733,7 +733,7 @@ class UserViewModel {
 }
 ```
 
-^ Here's an example, using the UserViewModel from before. The User is the stateless core, and the UserViewModel is the stateful shell.
+^ Here’s an example, using the UserViewModel from before. The User is the stateless core, and the UserViewModel is the stateful shell.
 
 ^ Although User is a struct, the view model can still update its `user` property by transforming the struct and keeping the new version. Any consumers that read the property before this point will still retain their version, avoiding scary action at a distance.
 
@@ -772,7 +772,7 @@ class UserViewModel {
 
 ![fit](DARE_logo.png)
 
-^ We all know this, but don't like to acknowledge it. Singletons are just glorified global variables! They suffer from all of the problems I was just talking about, we've just combined all of the problems into one magical object.
+^ We all know this, but don’t like to acknowledge it. Singletons are just glorified global variables! They suffer from all of the problems I was just talking about, we’ve just combined all of the problems into one magical object.
 
 ---
 
@@ -802,7 +802,7 @@ class APIClient {
 }
 ```
 
-^ Let's look at an example. Here we have a typical API client class, with a singleton as you would write it in Swift.
+^ Let’s look at an example. Here we have a typical API client class, with a singleton as you would write it in Swift.
 
 ---
 
@@ -820,7 +820,7 @@ class MyViewController: UIViewController {
 
 ^ A view controller might use it like this. Just grab the global variable (the singleton), and do some stuff with it.
 
-^ Let's rewrite this, but pass an instance to the view controller instead of using a singleton.
+^ Let’s rewrite this, but pass an instance to the view controller instead of using a singleton.
 
 ---
 
@@ -833,7 +833,7 @@ class APIClient {
 }
 ```
 
-^ Changing the API client is easy: we'll just remove the singleton accessor, forcing consumers to instantiate the client before they can use it.
+^ Changing the API client is easy: we’ll just remove the singleton accessor, forcing consumers to instantiate the client before they can use it.
 
 ---
 
@@ -867,9 +867,9 @@ class MyViewController: UIViewController {
 
 ^ Singletons are notoriously difficult to test, and usually involve ridiculous levels of mocking and stubbing. With the instance-based approach, we can avoid all that by creating a special API client subclass for testing, and passing that in. Bam, the view controller is no longer hitting the network.
 
-^ In addition, the fact that the view controller depends upon the API client is now made clear. It's not left implicit. This helps readers understand the responsibilities that the VC has.
+^ In addition, the fact that the view controller depends upon the API client is now made clear. It’s not left implicit. This helps readers understand the responsibilities that the VC has.
 
-^ Finally, the API client has become more flexible. Let's say you want to support multiple logins in the future. You could now just represent that with two separate instances of the API client, one per user. With a singleton, you'd have a very hard time retrofitting that kind of functionality.
+^ Finally, the API client has become more flexible. Let’s say you want to support multiple logins in the future. You could now just represent that with two separate instances of the API client, one per user. With a singleton, you’d have a very hard time retrofitting that kind of functionality.
 
 ---
 
@@ -877,7 +877,7 @@ class MyViewController: UIViewController {
 # Purity
 # Isolation
 
-^ Alright, whew. We've looked at how value types and pure algorithms can avoid state entirely, and how isolation can reduce the impact of state.
+^ Alright, whew. We’ve looked at how value types and pure algorithms can avoid state entirely, and how isolation can reduce the impact of state.
 
 ^ Keeping these principles in mind will help you minimize the complexity of your programs.
 
@@ -893,13 +893,13 @@ class MyViewController: UIViewController {
 # [fit] Minimize state
 # [fit] Minimize complexity
 
-^ Minimize your use of state, and you'll have minimized the complexity of your program. Less complexity means more reliable, more maintainable code, and a more pleasant development experience overall.
+^ Minimize your use of state, and you’ll have minimized the complexity of your program. Less complexity means more reliable, more maintainable code, and a more pleasant development experience overall.
 
 ---
 
 # [fit] Learning More
 
-^ Hopefully this has given you a taste of what's possible outside of the "traditional" stateful approaches to application design. The info out there far exceeds what anyone could present in an hour, so here are some additional resources.
+^ Hopefully this has given you a taste of what’s possible outside of the "traditional" stateful approaches to application design. The info out there far exceeds what anyone could present in an hour, so here are some additional resources.
 
 ---
 
@@ -915,7 +915,7 @@ class MyViewController: UIViewController {
 # [fit] Check out ReactiveCocoa
 # [fit] github.com/ReactiveCocoa/ReactiveCocoa
 
-^ ReactiveCocoa (of which I'm an author) offers further mechanisms for minimizing state and complexity. Explaining RAC would take a presentation of its own, but the basic idea is to think of state as "changes over time" instead of in-place updates, which makes it simpler to manage changes in general.
+^ ReactiveCocoa (of which I’m an author) offers further mechanisms for minimizing state and complexity. Explaining RAC would take a presentation of its own, but the basic idea is to think of state as "changes over time" instead of in-place updates, which makes it simpler to manage changes in general.
 
 ---
 
@@ -925,13 +925,13 @@ class MyViewController: UIViewController {
 # [fit] Elm
 # elm-lang.org
 
-^ Or just try your hand at purely functional programming. Working in a language like Haskell or Elm will open your eyes to how unnecessary state really is. Even if you never use them in a real application, they'll expand your mind and teach you valuable lessons that can be applied to everyday programming.
+^ Or just try your hand at purely functional programming. Working in a language like Haskell or Elm will open your eyes to how unnecessary state really is. Even if you never use them in a real application, they’ll expand your mind and teach you valuable lessons that can be applied to everyday programming.
 
 ---
 
 # [fit] Presentation available at
 # [fit] github.com/jspahrsummers/enemy-of-the-state
 
-^ All of these slides, and my notes, are available on GitHub. The README of this repository also contains links to every paper, talk, and post that I've referenced here.
+^ All of these slides, and my notes, are available on GitHub. The README of this repository also contains links to every paper, talk, and post that I’ve referenced here.
 
 ^ Thank you!
