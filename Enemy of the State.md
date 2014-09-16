@@ -33,7 +33,7 @@
 # What even is
 # [fit] state?
 
-^ NOTES
+^ Now, in _this_ abstract talk, I'm going to explain why state is harmful, and offer some tools (abstractions) to minimize its impact. But, first, we need to be on the same page about what state _is_.
 
 ---
 
