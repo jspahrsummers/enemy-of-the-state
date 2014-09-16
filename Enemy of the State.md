@@ -1,7 +1,7 @@
 # [fit] Enemy of the State
 ### _(Swift edition!)_
 
-^ WHAT I’M TALKING ABOUT
+^ I’m going to talk today about that evil word: state. Well, maybe it’s just me who finds it evil, but that’s exactly what I want to talk about. I hope to show how state is the single biggest source of needless complexity in software development, and what we can do to address that, with the ultimate goal of making our programs simpler and better.
 
 ---
 
