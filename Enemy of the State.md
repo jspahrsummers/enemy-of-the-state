@@ -171,7 +171,7 @@ _See Andy Matuschak's post, “Mutability, aliasing, and the caches you didn’t
 # State is
 # [fit] unpredictable
 
-^ The unpredictability of state makes code extremely hard to reason about.
+^ The unpredictability of state makes code extremely hard to reason about. When code is hard to reason about, bugs crop up, because each developer might have a different understanding of the intended behavior.
 
 ---
 
