@@ -162,9 +162,26 @@ _See Moseley and Marks’ paper, “Out of the Tar Pit”_
 
 ---
 
-# EXAMPLE OF INVALIDATING CACHED UI STATE
+# [fit] Table views as a cache
+# (as a service)
+
+```swift
+@IBAction func addBlankRow(sender: AnyObject) {
+	self.items.append("")
+
+	let indexPath = NSIndexPath(forRow: self.items.count,
+		inSection: 0)
+
+	self.tableView.insertRowsAtIndexPaths([ indexPath ],
+		withRowAnimation: UITableViewRowAnimation.Automatic)
+}
+```
 
 _See Andy Matuschak’s post, “Mutability, aliasing, and the caches you didn’t know you had”_
+
+^ Here's a contrived example of what I'm talking about. When the user clicks a button (hooked up to this IBAction here), we want to insert a blank row at the end of our table view. The table view has a _cache_ of the rows that it's displaying, and we have to make sure that, whenever we update our data, we update the table view in the exact same way. If we don't, UIKit will throw an exception.
+
+^ This code is easy to verify as correct, but in real application code, it's very common to see exceptions from table views and collection views being put into inconsistent states.
 
 ---
 

@@ -1,3 +1,5 @@
+import UIKit
+
 struct Point {
 	var x = 0.0
 	var y = 0.0
@@ -27,3 +29,14 @@ class APIClient {
 }
 
 APIClient.sharedClient
+
+class MyViewController: UITableViewController {
+	var items: [String] = []
+
+	@IBAction func addBlankRow(sender: AnyObject) {
+		self.items.append("")
+
+		let indexPath = NSIndexPath(forRow: self.items.count, inSection: 0)
+		self.tableView.insertRowsAtIndexPaths([ indexPath ], withRowAnimation: UITableViewRowAnimation.Automatic)
+	}
+}
