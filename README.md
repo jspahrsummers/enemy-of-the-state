@@ -5,3 +5,16 @@ Presented at [CocoaConf Mini Austin](http://cocoaconf.com/austin-2014/sessions/e
 This presentation is designed for [Deckset](http://decksetapp.com/) theme “Next”.
 
 Thanks to [@lukehefson](https://github.com/lukehefson) for designing the original slides!
+
+### References
+
+Here are some links to material referenced in the talk:
+
+ * [Simple Made Easy](http://www.infoq.com/presentations/Simple-Made-Easy) by Rich Hickey
+ * [Out of the Tar Pit](http://shaffner.us/cs/papers/tarpit.pdf) by Moseley and Marks
+ * [Mutability, aliasing, and the caches you didn’t know you had](https://garbagecollective.quora.com/Mutability-aliasing-and-the-caches-you-didnt-know-you-had) by Andy Matuschak
+ * [Boundaries](https://www.destroyallsoftware.com/talks/boundaries) by Gary Bernhardt
+ * “Advanced iOS Application Architecture and Patterns” from [WWDC 2014](https://developer.apple.com/videos/wwdc/2014/) by Andy Matuschak and Colin Barrett
+ * [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)
+ * [Haskell](http://www.haskell.org), or my preferred tutorial, [Real World Haskell](http://book.realworldhaskell.org/)
+ * [Elm](http://elm-lang.org)
