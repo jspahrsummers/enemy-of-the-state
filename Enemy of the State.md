@@ -179,7 +179,7 @@ _See Andy Matuschak's post, “Mutability, aliasing, and the caches you didn’t
 
 ^ We're probably all familiar with race conditions, where multiple threads try to use the same state at the same time. If anything is modifying the state at the same time, you can see inconsistency at best, or corruption at worst.
 
-^ How do you prevent race conditions? You can't really disprove their existence, you can only try your hardest to eliminate them through careful code analysis.
+^ How do you prevent race conditions? It's very hard to prove their absence, you just have to focus on eliminating them through careful code analysis, which is time-consuming and error-prone. This is a consequence of state.
 
 ---
 
