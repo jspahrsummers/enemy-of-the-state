@@ -292,14 +292,14 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 ## Purity
 ## Isolation
 
-^ NOTES?
+^ A value is just a piece of data, like a string, a number, a collection, or a date. Values themselves do not change, so converting mutable objects into immutable values is a great way to eliminate state.
 
 ---
 
 # [fit] Structs
 # [fit] Enums
 
-^ These are Swift's value types. Classes, by contrast, are reference types.
+^ These are Swift's value types, which we can use to create our _own_ values. Classes, by contrast, are reference types.
 
 ---
 
@@ -316,12 +316,14 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 # [fit] immutable
 # in Swift
 
-^ NEED NOTES HERE
+^ Values never change. Only variables do.
 
 ---
 
 > But I can set the properties of a struct in Swift! This guy doesn’t know what he’s talking about.
 —You, the audience
+
+^ I've said that values are immutable multiple times now, but it might be hard to see why. Let's dig into an example.
 
 ---
 
@@ -339,7 +341,7 @@ struct Point {
 }
 ```
 
-^ Let's go through a simple example. Here's a struct that I've defined for representing geometric points (we'll pretend that CGPoint doesn't already exist). It has some writable coordinates, and a mutating function that scales the point by a given factor.
+^ Here's a struct that I've defined for representing geometric points (we'll pretend that CGPoint doesn't already exist). It has some writable coordinates, and a mutating function that scales the point by a given factor.
 
 ---
 
@@ -509,21 +511,21 @@ mutating func scale(inout self: Point, factor: Double) {
 
 # [fit] So what?
 
-^ NOTES
-
----
-
-# [fit] Values won't change
-# [fit] unpredictably
-
-^ NOTES
+^ Why does it _matter_ that values are immutable?
 
 ---
 
 # [fit] Values are automatically
 # [fit] thread-safe
 
-^ NOTES
+^ Unlike variables, which have to be synchronized, values are automatically thread-safe. Changing a variable on one thread does not affect another thread's view of the previous _value_. This is huge—no more race conditions!
+
+---
+
+# [fit] Values are automatically
+# [fit] predictable
+
+^ And, unlike state, which is often nondeterministic, values are predictable and unsurprising. You can use them repeatedly and always see the same results.
 
 ---
 
@@ -555,7 +557,7 @@ println(y)
 ## [fit] Purity
 ## Isolation
 
-^ NOTES
+^ In addition to value types, so-called "pure" algorithms are another great way to eliminate state.
 
 ---
 
@@ -563,7 +565,7 @@ println(y)
 # [fit] Same inputs always yield the same result
 # [fit] Must not have _observable_ side effects
 
-^ TALK ABOUT OBSERVABLE EFFECTS (e.g. lazily computed properties, memory allocation)
+^ Note that lazily-computed properties, memory allocation, etc. can still be pure, as long as the same inputs lead to the same result—always.
 
 ---
 
@@ -584,14 +586,22 @@ struct Array {
 }
 ```
 
-^ NOTES
+^ Here are some examples of pure vs. impure functions from the Swift standard library. (Talk about each.)
+
+^ Is Array.count pure? I would argue yes, because it depends only on the _input_ that is the array itself. If the array (the input) has not changed, the output (the count) will not change either.
 
 ---
 
 # [fit] Impure functions are
 # [fit] surprising
 
-^ NOTES
+^ Reasoning about behavior becomes extremely difficult when a function does different things for different invocations.
+
+---
+
+> Insanity is doing the same thing over and over again but expecting **different results**.
+
+^ It's actually pretty insane that we put up with this. Pure functions are so much simpler and sane.
 
 ---
 
@@ -625,7 +635,9 @@ struct Array {
 ## [fit] Isolation
 ##  
 
-^ NOTES
+^ As I alluded to before, it's not feasible to eliminate _all_ state from a Cocoa application. Value types and pure algorithms can get you pretty far, but there will be some remainder that "needs" to be stateful.
+
+^ Still, when dealing with state, we can _isolate_ (or encapsulate) it to reduce its impact on the rest of the program.
 
 ---
 
@@ -633,7 +645,7 @@ struct Array {
 # [fit] only one
 # [fit] reason to change
 
-^ This is known as the Single Responsibility Principle. Another way to state this principle is that a given object should only be in charge of one thing.
+^ This, the Single Responsibility Principle, is a good rule of thumb. To put it another way, each object should only be in charge of _one_ piece of state. Avoid combining the responsibilities for a bunch of state into the same class.
 
 ^ As an example of violating this principle, view controllers often end up managing a lot of different responsibilities, when really those could be split out into different objects. I'll show one such example in just a bit.
 
@@ -643,7 +655,7 @@ struct Array {
 # [fit] unrelated
 # pieces of state
 
-^ The most effective way to simplify state without removing it is to isolate it, so it doesn't get complected with other concerns.
+^ Again, break apart those responsibilities. Encapsulate different concepts away from each other.
 
 ---
 
@@ -865,19 +877,23 @@ class MyViewController: UIViewController {
 # Purity
 # Isolation
 
-^ NOTES
+^ Alright, whew. We've looked at how value types and pure algorithms can avoid state entirely, and how isolation can reduce the impact of state.
+
+^ Keeping these principles in mind will help you minimize the complexity of your programs.
 
 ---
 
 # [fit] TL;
 # [fit] DR
 
+^ If you walk away from this talk with only one thing, it should be this…
+
 ---
 
 # [fit] Minimize state
 # [fit] Minimize complexity
 
-^ NOTES
+^ Minimize your use of state, and you'll have minimized the complexity of your program. Less complexity means more reliable, more maintainable code, and a more pleasant development experience overall.
 
 ---
 
@@ -915,3 +931,7 @@ class MyViewController: UIViewController {
 
 # [fit] Presentation available at
 # [fit] github.com/jspahrsummers/enemy-of-the-state
+
+^ All of these slides, and my notes, are available on GitHub. The README of this repository also contains links to every paper, talk, and post that I've referenced here.
+
+^ Thank you!
