@@ -521,7 +521,7 @@ mutating func scale(inout self: Point, factor: Double) {
 ---
 
 # [fit] Values are automatically
-# [fit] thread safe
+# [fit] thread-safe
 
 ^ NOTES
 
