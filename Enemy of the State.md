@@ -102,7 +102,7 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 
 ![fill](sadmac.png)
 
-^ The biggest problem with state is that it can "go bad." Any time you’ve restarted your computer or an app to fix an issue, you’ve been a victim of state.
+^ The biggest problem with state is that it can “go bad.” Any time you’ve restarted your computer or an app to fix an issue, you’ve been a victim of state.
 
 ---
 
@@ -374,7 +374,7 @@ p.x = 7     // p = (7, 10)
 p.scale(2)  // p = (14, 20)
 ```
 
-^ Likewise, we can call our mutating method, and it appears that the point has changed in place. But what does it mean for it to have changed "in place?"
+^ Likewise, we can call our mutating method, and it appears that the point has changed in place. But what does it mean for it to have changed “in place?”
 
 ---
 
@@ -498,7 +498,7 @@ mutating func scale(inout self: Point, factor: Double) {
 
 ^ In fact, the mutating method needs an `inout` version of `self`, and this is the key to the whole mutability model. What this function is doing then, is accepting a copy of the Point, transforming it, and then _storing_ it back to the caller.
 
-^ Except storage is a feature of _variables_, not values. We’ve come full circle. The method is only "mutating" because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so "mutating" methods cannot be used.
+^ Except storage is a feature of _variables_, not values. We’ve come full circle. The method is only “mutating” because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so “mutating” methods cannot be used.
 
 ---
 
@@ -557,7 +557,7 @@ println(y)
 ## [fit] Purity
 ## Isolation
 
-^ In addition to value types, so-called "pure" algorithms are another great way to eliminate state.
+^ In addition to value types, so-called “pure” algorithms are another great way to eliminate state.
 
 ---
 
@@ -635,7 +635,7 @@ struct Array {
 ## [fit] Isolation
 ##  
 
-^ As I alluded to before, it’s not feasible to eliminate _all_ state from a Cocoa application. Value types and pure algorithms can get you pretty far, but there will be some remainder that "needs" to be stateful.
+^ As I alluded to before, it’s not feasible to eliminate _all_ state from a Cocoa application. Value types and pure algorithms can get you pretty far, but there will be some remainder that “needs” to be stateful.
 
 ^ Still, when dealing with state, we can _isolate_ (or encapsulate) it to reduce its impact on the rest of the program.
 
@@ -672,7 +672,7 @@ class MyViewController: UIViewController {
 }
 ```
 
-^ This is an example of poor isolation. The view controller is "complecting" the concern of logging in with the concern of knowing who’s logged in. As the implementation grows to manage both of these concerns, it becomes difficult to reason about them separately.
+^ This is an example of poor isolation. The view controller is “complecting” the concern of logging in with the concern of knowing who’s logged in. As the implementation grows to manage both of these concerns, it becomes difficult to reason about them separately.
 
 ---
 
@@ -713,7 +713,7 @@ _See Gary Bernhardt’s talk, “Boundaries”_
 
 IMAGE HERE
 
-^ Model-View-ViewModel is actually a great example of this "stateless core" design. MVVM (depicted here, on the bottom) involves replacing the omniscient controller of MVC with a less ambitious "view model" object. The view model is actually owned by the view, and behaves like an adapter of the model.
+^ Model-View-ViewModel is actually a great example of this “stateless core” design. MVVM (depicted here, on the bottom) involves replacing the omniscient controller of MVC with a less ambitious “view model” object. The view model is actually owned by the view, and behaves like an adapter of the model.
 
 ^ The view model is responsible for changing the model, which means you can make the model immutable, and the VM can just apply transformations instead of mutations.
 
@@ -899,7 +899,7 @@ class MyViewController: UIViewController {
 
 # [fit] Learning More
 
-^ Hopefully this has given you a taste of what’s possible outside of the "traditional" stateful approaches to application design. The info out there far exceeds what anyone could present in an hour, so here are some additional resources.
+^ Hopefully this has given you a taste of what’s possible outside of the “traditional” stateful approaches to application design. The info out there far exceeds what anyone could present in an hour, so here are some additional resources.
 
 ---
 
@@ -908,14 +908,14 @@ class MyViewController: UIViewController {
 # [fit] “Advanced iOS Application
 # [fit] Architecture and Patterns”
 
-^ This talk, by Andy Matuschak and Colin Barrett, covers a lot of similar topics. In particular, they talk a lot about determining "where truth resides" as a strategy for reducing complexity. I highly recommend watching it.
+^ This talk, by Andy Matuschak and Colin Barrett, covers a lot of similar topics. In particular, they talk a lot about determining “where truth resides” as a strategy for reducing complexity. I highly recommend watching it.
 
 ---
 
 # [fit] Check out ReactiveCocoa
 # [fit] github.com/ReactiveCocoa/ReactiveCocoa
 
-^ ReactiveCocoa (of which I’m an author) offers further mechanisms for minimizing state and complexity. Explaining RAC would take a presentation of its own, but the basic idea is to think of state as "changes over time" instead of in-place updates, which makes it simpler to manage changes in general.
+^ ReactiveCocoa (of which I’m an author) offers further mechanisms for minimizing state and complexity. Explaining RAC would take a presentation of its own, but the basic idea is to think of state as “changes over time” instead of in-place updates, which makes it simpler to manage changes in general.
 
 ---
 
