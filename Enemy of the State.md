@@ -732,7 +732,7 @@ class UserViewModel {
 
 ![fit](DARE_logo.png)
 
-^ NOTES
+^ I want to briefly talk about the most egregious of all state: the global variable.
 
 ---
 
@@ -742,14 +742,16 @@ class UserViewModel {
 
 ![fit](DARE_logo.png)
 
-^ NOTES
+^ Globals are even more dangerous than other forms of state, because they get complected (mixed in with) every other part of your program. The dependencies are all implicit, and components get more coupled together.
 
 ---
 
 # [fit] Isolation reduces complexity
 # [fit] Globals compound it
 
-^ NOTES
+![fit](DARE_logo.png)
+
+^ Global variables are, in fact, the exact opposite of good isolation. Instead of isolating the state, it blankets everything.
 
 ---
 
@@ -758,11 +760,104 @@ class UserViewModel {
 
 ![fit](DARE_logo.png)
 
-^ NOTES
+^ We all know this, but don't like to acknowledge it. Singletons are just glorified global variables! They suffer from all of the problems I was just talking about, we've just combined all of the problems into one magical object.
 
 ---
 
-# PASS AROUND INSTANCES INSTEAD
+# [fit] Let’s just pass
+# [fit] instances
+# [fit] around instead
+
+^ The solution is simple. Instead of having a singleton that any component can access at any time, create instances with the _specific_ functionality that you need, and pass those around instead.
+
+---
+
+# _Example:_ Singleton Networking
+
+```swift
+class APIClient {
+	// Access the singleton with APIClient.sharedClient
+	class var sharedClient: APIClient {
+		struct Singleton {
+			static let instance = APIClient()
+		}
+
+		return Singleton.instance
+	}
+
+	// Fetches the top-level list of categories
+	func fetchCategories() -> [Category]
+}
+```
+
+^ Let's look at an example. Here we have a typical API client class, with a singleton as you would write it in Swift.
+
+---
+
+# _Example:_ Singleton Networking
+
+```swift
+class MyViewController: UIViewController {
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+
+		APIClient.sharedClient.fetchCategories()
+	}
+}
+```
+
+^ A view controller might use it like this. Just grab the global variable (the singleton), and do some stuff with it.
+
+^ Let's rewrite this, but pass an instance to the view controller instead of using a singleton.
+
+---
+
+# _Example:_ Instance Networking
+
+```swift
+class APIClient {
+	// Fetches the top-level list of categories
+	func fetchCategories() -> [Category]
+}
+```
+
+^ Changing the API client is easy: we'll just remove the singleton accessor, forcing consumers to instantiate the client before they can use it.
+
+---
+
+# _Example:_ Instance Networking
+
+```swift
+class MyViewController: UIViewController {
+	let client: APIClient
+
+	designated init(client: APIClient) {
+		super.init(nibName: nil, bundle: nil)
+	}
+
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+
+		client.fetchCategories()
+	}
+}
+```
+
+^ Now, whoever creates the view controller needs to give it the API client that it should work with.
+
+^ This looks a little denser, but the benefits are enormous.
+
+---
+
+# [fit] Easily testable
+# [fit] Explicit dependencies
+# [fit] More flexible
+
+^ Singletons are notoriously difficult to test, and usually involve ridiculous levels of mocking and stubbing. With the instance-based approach, we can avoid all that by creating a special API client subclass for testing, and passing that in. Bam, the view controller is no longer hitting the network.
+
+^ In addition, the fact that the view controller depends upon the API client is now made clear. It's not left implicit. This helps readers understand the responsibilities that the VC has.
+
+^ Finally, the API client has become more flexible. Let's say you want to support multiple logins in the future. You could now just represent that with two separate instances of the API client, one per user. With a singleton, you'd have a very hard time retrofitting that kind of functionality.
 
 ---
 

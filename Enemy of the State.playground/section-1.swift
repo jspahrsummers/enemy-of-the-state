@@ -15,3 +15,15 @@ p.x = 7
 p.scale(2)
 
 q
+
+class APIClient {
+	class var sharedClient: APIClient {
+		struct Singleton {
+			static let instance = APIClient()
+		}
+
+		return Singleton.instance
+	}
+}
+
+APIClient.sharedClient
