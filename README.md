@@ -16,5 +16,5 @@ Here are some links to material referenced in the talk:
  * [Boundaries](https://www.destroyallsoftware.com/talks/boundaries) by Gary Bernhardt
  * “Advanced iOS Application Architecture and Patterns” from [WWDC 2014](https://developer.apple.com/videos/wwdc/2014/) by Andy Matuschak and Colin Barrett
  * [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)
- * [Haskell](http://www.haskell.org), or my preferred tutorial, [Real World Haskell](http://book.realworldhaskell.org/)
+ * Haskell's [official website](http://www.haskell.org), or my preferred tutorial, [Real World Haskell](http://book.realworldhaskell.org/)
  * [Elm](http://elm-lang.org)
