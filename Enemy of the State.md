@@ -26,6 +26,8 @@
 
 ^ The right abstractions can reduce complexity, increase reliability and maintainability, and give you greater confidence in the correctness of your code.
 
+^ Think of it like the transition from assembly to higher-level programming languages. Each new higher-level language offers more convenience, more tools for managing complexity, more safety, and so forth. They do this by offering more and more powerful abstractions.
+
 ---
 
 # What even is
