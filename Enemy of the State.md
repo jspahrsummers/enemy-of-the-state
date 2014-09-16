@@ -71,6 +71,8 @@ a++
 
 ^ State is easy because it's familiar, or approachable. We first learned how to program statefully, so it comes naturally to us.
 
+^ To use a different example, it's definitely _easy_ to stuff all of your model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary with one kind of structure but get something else).
+
 ---
 
 # [fit] Easy
