@@ -200,8 +200,8 @@ _See Andy Matuschak’s post, “Mutability, aliasing, and the caches you didn�
 
 ---
 
-> [State is] spooky action at a distance
-—Albert Einstein _(probably)_
+> [State is] **spooky action at a distance**
+—Albert Einstein **_(probably)_**
 
 ^ This term of his was actually about quantum entanglement, but the parallels are astounding.
 
