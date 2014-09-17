@@ -1,5 +1,7 @@
 import UIKit
 
+
+
 struct Point {
 	var x = 0.0
 	var y = 0.0
@@ -18,6 +20,8 @@ p.scale(2)
 
 q
 
+
+
 class APIClient {
 	class var sharedClient: APIClient {
 		struct Singleton {
@@ -30,6 +34,8 @@ class APIClient {
 
 APIClient.sharedClient
 
+
+
 class MyViewController: UITableViewController {
 	var items: [String] = []
 
@@ -40,3 +46,27 @@ class MyViewController: UITableViewController {
 		self.tableView.insertRowsAtIndexPaths([ indexPath ], withRowAnimation: UITableViewRowAnimation.Automatic)
 	}
 }
+
+
+
+func formattedCurrentTime() -> String {
+	let now = NSDate()
+
+	let formatter = NSDateFormatter()
+	formatter.timeStyle = NSDateFormatterStyle.MediumStyle
+
+	return formatter.stringFromDate(now)
+}
+
+formattedCurrentTime()
+
+
+
+func formattedTimeFromDate(date: NSDate) -> String {
+	let formatter = NSDateFormatter()
+	formatter.timeStyle = NSDateFormatterStyle.MediumStyle
+
+	return formatter.stringFromDate(date)
+}
+
+formattedTimeFromDate(NSDate())

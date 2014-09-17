@@ -628,28 +628,82 @@ struct Array {
 
 ---
 
-# EXAMPLE OF MANAGED OBJECT VALUEFORKEY
+# [fit] _Example:_ Impure formatting
+
+```swift
+func formattedCurrentTime() -> String {
+	let now = NSDate()
+
+	let formatter = NSDateFormatter()
+	formatter.timeStyle =
+		NSDateFormatterStyle.MediumStyle
+
+	return formatter.stringFromDate(now)
+}
+```
+
+^ This function, which formats the current time, seems simple enough. However, it's impure—each invocation will return a slightly different string. This could result in surprising behavior if the function is somehow called too early or late.
 
 ---
 
-# MAKING CORE DATA PURE?
+# [fit] _Example:_ Pure formatting
 
----
+```swift
+func formattedTimeFromDate(date: NSDate) -> String {
+	let formatter = NSDateFormatter()
+	formatter.timeStyle =
+		NSDateFormatterStyle.MediumStyle
 
-# EXAMPLE OF MANAGED OBJECT VALUEFORKEY
+	return formatter.stringFromDate(date)
+}
+```
+
+^ Here's the pure equivalent. We've not lost anything, and in fact have even _gained_ expressive power. If the caller wants to pass in the current date, they can do that, or they can pass in some date object that they already had.
 
 ---
 
 # [fit] Pure functions are
 # [fit] easily tested
 
----
-
-# EXAMPLE OF TESTING MANAGED OBJECTS BEFORE
+^ Besides being more flexible to use, pure algorithms are easier to test, because you're just testing a transformation of input to output.
 
 ---
 
-# EXAMPLE OF TESTING MANAGED OBJECTS AFTER
+# _Example:_ Testing impurity
+
+```swift
+let original = formattedCurrentTime()
+
+NSThread.sleepForTimeInterval(1)
+
+let updated = formattedCurrentTime()
+
+XCTAssertNotEqual(original, updated,
+	"Formatted dates should differ after a second")
+```
+
+^ Let's say we wanted to verify that the formatted date includes seconds. We don't want to duplicate our formatting code in the tests, because that defeats the purpose, so a good test could be whether the formatted string differs after a second has passed.
+
+^ In this regard, this test will do what we want, but it sucks that we have to sleep for a second. Or we could mock NSDate, but… gross.
+
+---
+
+# _Example:_ Testing purity
+
+```swift
+let date = NSDate()
+let original = formattedTimeFromDate(date)
+
+let oneSecondLater = date.dateByAddingTimeInterval(1)
+let updated = formattedTimeFromDate(oneSecondLater)
+
+XCTAssertNotEqual(original, updated,
+	"Formatted dates should differ across one second")
+```
+
+^ With the pure version of our function, we don't need mocking, and we don't need sleeping. We just construct the dates we want, and pass them in.
+
+^ Purity makes testing easier because you only need to construct the desired inputs and test the intended output. There's no reliance upon external state anymore.
 
 ---
 
