@@ -71,8 +71,6 @@ a++
 
 ^ State is easy because it’s familiar, or approachable. We first learned how to program statefully, so it comes naturally to us.
 
-^ To use a different example, it’s definitely _easy_ to stuff all of your model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary with one kind of structure but get something else).
-
 ---
 
 # [fit] Easy
@@ -82,21 +80,29 @@ a++
 
 _See Rich Hickey’s talk, “Simple Made Easy”_
 
+^ However, ease does not necessarily imply simplicity.
+
 ---
 
 # [fit] Easy
 # [fit] _Familiar_ or _approachable_
+
+^ We consider things “easy” when we already mostly know them, or can pick them up quickly.
 
 ---
 
 # [fit] Simple
 # [fit] Fewer concepts and concerns
 
+^ However, simplicity has a stricter criterion: it has to involve as few concepts as possible. It has to minimize the number of different things you need to think about.
+
 ---
 
 # [fit] State is
 # [fit] familiar
 # (but complex)
+
+^ To use another example, it’s definitely _easy_ to stuff all of your model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary with one kind of structure but get something else).
 
 ---
 
