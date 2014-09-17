@@ -573,7 +573,7 @@ println(y)
 
 ![](successkid.jpg)
 
-^ NOTES
+^ By reading the value `myData` into a constant, we know that it (and its `someInt` property) won't change between reads.
 
 ---
 
