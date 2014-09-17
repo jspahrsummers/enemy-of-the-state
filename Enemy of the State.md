@@ -285,14 +285,14 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 - In-memory or on-disk caches
 - UI appearance and content
 
-^ Most applications require some state, and that’s okay. Here are some examples of state being necessary and helpful for solving a particular problem.
+^ Most applications require some state, and that’s okay. Here are some examples of state being necessary and helpful for solving a particular problem. These are part of the _essential_ complexity of your application.
 
 ---
 
 # [fit] Minimize state
 # [fit] Minimize complexity
 
-^ So although it’s not possible to eliminate all state from a Cocoa application, we can try to minimize it (and therefore minimize complexity) as much as possible.
+^ So although it’s not possible to eliminate all state from a Cocoa application, we can try to minimize it (and therefore minimize incidental complexity) as much as possible.
 
 ---
 
