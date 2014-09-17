@@ -98,31 +98,26 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 
 ---
 
-# [fit] State is
-# [fit] familiar
-# (but complex)
+# [fit] Complexity
+# [fit] Mixing (“complecting”) concepts or concerns
 
-^ To use another example, it’s definitely _easy_ to stuff all of your model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary with one kind of structure but get something else).
+^ Therefore, complexity is the opposite of simplicity.
+
+^ Using this definition, state is complex because it mixes together completely unrelated components of your application. When the state of one component depends on the state of another, and so on, suddenly all of those components have gotten coupled and tied together, when they really didn’t need to be.
 
 ---
 
 ![fill](sadmac.png)
 
-^ The biggest problem with state is that it can “go bad.” Any time you’ve restarted your computer or an app to fix an issue, you’ve been a victim of state.
+^ The biggest problem with state is that it can “go bad.” Any time you’ve restarted your computer or an app to fix an issue, you’ve been a victim of state. That's a consequence of its complexity.
 
 ---
 
-# State is
-# [fit] complex
+# [fit] State is
+# [fit] familiar
+# (but complex)
 
-^ That’s a pretty heavy assertion. Before we can decide whether it’s true or not, what is complexity?
-
----
-
-# [fit] Complexity
-# [fit] Mixing (“complecting”) concepts or concerns
-
-^ Using this definition, state is complex because it mixes together completely unrelated components of your application. When the state of one component depends on the state of another, and so on, suddenly all of those components have gotten coupled and tied together, when they really didn’t need to be.
+^ To use another example, it’s definitely _easy_ to stuff all of your model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary with one kind of structure but get something else).
 
 ---
 
