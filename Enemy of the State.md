@@ -789,7 +789,8 @@ _See Gary Bernhardt’s talk, “Boundaries”_
 
 # Model-View-ViewModel
 
-IMAGE HERE
+![inline](mvc.png)
+![inline](mvvm.png)
 
 ^ Model-View-ViewModel is actually a great example of this “stateless core” design. MVVM (depicted here, on the bottom) involves replacing the omniscient controller of MVC with a less ambitious “view model” object. The view model is actually owned by the view, and behaves like an adapter of the model.
 
