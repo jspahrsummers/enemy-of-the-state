@@ -535,7 +535,7 @@ mutating func scale(inout self: Point, factor: Double) {
 # [fit] Values are automatically
 # [fit] thread-safe
 
-^ Unlike variables, which have to be synchronized, values are automatically thread-safe. Changing a variable on one thread does not affect another thread’s view of the previous _value_. This is huge—no more race conditions!
+^ Because values are immutable, there's no problem—and no race condition—if multiple threads are using the same value. This is unlike variables, which would have to be synchronized in the same situation.
 
 ---
 
