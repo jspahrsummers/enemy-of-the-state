@@ -167,7 +167,7 @@ _See Moseley and Marks’ paper, “Out of the Tar Pit”_
 # (as a service)
 
 ```swift
-@IBAction func addBlankRow(sender: AnyObject) {
+@IBAction func addBlankRow(sender: AnyObject!) {
 	self.items.append("")
 
 	let indexPath = NSIndexPath(forRow: self.items.count,
