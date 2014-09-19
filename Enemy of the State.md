@@ -14,7 +14,7 @@
 # [fit] Programming is all about
 # [fit] abstraction
 
-^ Why this talk? I could talk about concrete things, like RAC or how we build native apps at GitHub. However, I want to impart abstract knowledge, so this will be a less concrete talk than you’re used to.
+^ Why this talk? I could talk about concrete things, like RAC or building native apps at GitHub. However, I want to impart abstract knowledge, so this will be a less concrete talk.
 
 ^ Don’t let your eyes glaze over, though, because programming is all about abstraction, and an understanding of theory is hugely important for solving practical, real world problems.
 
@@ -24,9 +24,9 @@
 # [fit] best possible
 # [fit] abstractions for development
 
-^ The right abstractions can reduce complexity, increase reliability and maintainability, and give you greater confidence in the correctness of your code.
+^ The right abstractions can reduce complexity, increase reliability, maintainability, and confidence in your code.
 
-^ Think of it like the transition from assembly to higher-level programming languages. Each new higher-level language offers more convenience, more tools for managing complexity, more safety, and so forth. They do this by offering more and more powerful abstractions.
+^ It’s like the transition from assembly to higher-level programming languages. Higher-level languages offer more convenience, tools for managing complexity, safety, etc. They do this by offering more powerful abstractions.
 
 ---
 
@@ -98,18 +98,16 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 
 ---
 
-# [fit] Complexity
-# [fit] Mixing (“complecting”) concepts or concerns
+![fill](sadmac.png)
 
-^ Therefore, complexity is the opposite of simplicity.
-
-^ Using this definition, state is complex because it mixes together completely unrelated components of your application. When the state of one component depends on the state of another, and so on, suddenly all of those components have gotten coupled and tied together, when they really didn’t need to be.
+^ The biggest problem with state is that it can “go bad.” Any time you’ve restarted your computer or an app to fix an issue, you’ve been a victim of state.
 
 ---
 
-![fill](sadmac.png)
+# [fit] Complexity
+# [fit] Mixing (“complecting”) concepts or concerns
 
-^ The biggest problem with state is that it can “go bad.” Any time you’ve restarted your computer or an app to fix an issue, you’ve been a victim of state. That's a consequence of its complexity.
+^ State is complex because it mixes together completely unrelated components of your application. When the state of one component depends on the state of another, and so on—like in the crashing example—suddenly all of them have gotten coupled and tied together, when they don’t need to be.
 
 ---
 
@@ -117,7 +115,7 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 # [fit] familiar
 # (but complex)
 
-^ To use another example, it’s definitely _easy_ to stuff all of your model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary with one kind of structure but get something else).
+^ To use another example, it’s definitely _easy_ to put model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary in one format but get something else).
 
 ---
 
@@ -129,9 +127,9 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 
 _See Moseley and Marks’ paper, “Out of the Tar Pit”_
 
-^ Essential complexity refers to the complexity that’s inherent to the problem you’re trying to solve. If you’re writing an app that connects to the internet, for example, you automatically have to deal with all the complexity of networking (even if it’s hidden away from you).
+^ Essential complexity is part of the problem you’re trying to solve. Connecting to the internet, for example, exposes you to all the complexity of networking.
 
-^ By contrast, incidental complexity is the complexity that’s not actually necessary. It arises solely because of your application architecture, or design choices, or whatever else. State falls into this category, because its complexity is avoidable, as we’ll see later.
+^ Incidental complexity is not actually necessary. It arises because of application architecture, design choices, etc. State falls into this category, because its complexity is avoidable.
 
 ---
 
@@ -195,9 +193,9 @@ _See Andy Matuschak’s post, “Mutability, aliasing, and the caches you didn�
 
 ![fit](raceconditions.jpg)
 
-^ We’re probably all familiar with race conditions, where multiple threads try to use the same state at the same time. If anything is modifying the state at the same time, you can see inconsistency at best, or corruption at worst.
+^ Race conditions occur when multiple threads try to use the same state at the same time. If anything is modifying the state concurrently, you can see inconsistency at best, or corruption at worst.
 
-^ How do you prevent race conditions? It’s very hard to prove their absence, you just have to focus on eliminating them through careful code analysis, which is time-consuming and error-prone. This is a consequence of state.
+^ It’s hard to prove race conditions don’t exist. You just have to focus on eliminating them through code analysis, which is time-consuming and error-prone. This is a consequence of state.
 
 ---
 
@@ -225,6 +223,8 @@ println(y)
 **==> 10 (?!?!)**
 
 ![fit](rageface.png)
+
+^ For example, reading a simple property at two different times can result in two different values. As a consumer, it might be hard to predict why.
 
 ---
 
@@ -272,9 +272,9 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ![fit](trollface.png)
 
-^ This (slightly modified) test verifies that a view controller’s NSFetchedResultsController successfully updates after a managed object is deleted from the context.
+^ This (slightly modified) test verifies that a fetched results controller successfully updates after a managed object is deleted from the context.
 
-^ As you can see, it uses a lot of mocks and stubs to avoid actually manipulating a database (which is a form of state). Stateless code requires less mocking and stubbing, since the output of a method should only depend on its input!
+^ It uses mocks and stubs to avoid actually manipulating a database (which is a form of state). Stateless code requires less mocking and stubbing, since the output of a method depends only on its input!
 
 ---
 
@@ -330,9 +330,9 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 # [fit] Copied
 # (not shared)
 
-^ One of the key attributes of a value type is that instances are copied when assigned to variables, passed to methods, etc., unlike a reference type, where a reference to the existing instance is passed instead.
+^ One of the key features of a value type is that instances are copied when assigned to variables, passed to methods, etc., unlike a reference type, where a reference to the existing instance is passed instead.
 
-^ For example, this means that modifying a struct does not affect preexisting copies of that struct. We’ll see why this is important shortly.
+^ This means that modifying a struct does not affect preexisting copies of it. We’ll see why this is important.
 
 ---
 
@@ -501,9 +501,9 @@ mutating func scale(self: Point, factor: Double) {
 }
 ```
 
-^ The first realization here is that `self` is actually a magic argument to every instance method. The compiler inserts `self` automatically, so you never see it, but the functions actually look kinda like this under the hood.
+^ The first realization here is that `self` is a magic argument to every instance method. The compiler inserts `self` automatically, so you never see it, but the functions look kinda like this under the hood.
 
-^ But wait, Swift arguments are read-only by default, so the mutating method here is actually invalid. It wouldn’t be able to write to `self`, much less have those changes saved.
+^ But wait, Swift arguments are read-only by default, so the mutating method here is invalid. It wouldn’t be able to write to `self`, much less have those changes saved.
 
 ---
 
@@ -520,9 +520,9 @@ mutating func scale(inout self: Point, factor: Double) {
 }
 ```
 
-^ In fact, the mutating method needs an `inout` version of `self`, and this is the key to the whole mutability model. What this function is doing then, is accepting a copy of the Point, transforming it, and then _storing_ it back to the caller.
+^ The mutating method needs an `inout` version of `self`, and this is the key to the whole mutability model. What this function is doing then, is accepting a copy of the Point, transforming it, and storing it back to the caller.
 
-^ Except storage is a feature of _variables_, not values. We’ve come full circle. The method is only “mutating” because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so “mutating” methods cannot be used.
+^ But storage is a feature of _variables_, not values. We’ve come full circle. The method is only “mutating” because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so “mutating” methods cannot be used.
 
 ---
 
@@ -683,9 +683,9 @@ XCTAssertNotEqual(original, updated,
 	"Formatted dates should differ after a second")
 ```
 
-^ Let's say we wanted to verify that the formatted date includes seconds. We don't want to duplicate our formatting code in the tests, because that defeats the purpose, so a good test could be whether the formatted string differs after a second has passed.
+^ Let's say we want to verify that the formatted date includes seconds. We don't want to duplicate the date formatter in the tests, because that defeats the purpose. Instead, our test could be whether the formatted string is different after one second.
 
-^ In this regard, this test will do what we want, but it sucks that we have to sleep for a second. Or we could mock NSDate, but… gross.
+^ This test will do what we want, but it sucks that we have to sleep for a second. We could also mock NSDate, but… gross.
 
 ---
 
@@ -723,9 +723,9 @@ XCTAssertNotEqual(original, updated,
 # [fit] only one
 # [fit] reason to change
 
-^ This, the Single Responsibility Principle, is a good rule of thumb. To put it another way, each object should only be in charge of _one_ piece of state. Avoid combining the responsibilities for a bunch of state into the same class.
+^ The Single Responsibility Principle is a good rule of thumb. Each object should only be in charge of _one_ piece of state. Avoid combining the responsibilities for a bunch of state into the same class.
 
-^ As an example of violating this principle, view controllers often end up managing a lot of different responsibilities, when really those could be split out into different objects. I’ll show one such example in just a bit.
+^ As an example of a violation, view controllers often end up managing a lot of different responsibilities, when really those could be split out into different objects. I’ll show one such example in just a bit.
 
 ---
 
@@ -814,7 +814,7 @@ class UserViewModel {
 
 ^ Here’s an example, using the UserViewModel from before. The User is the stateless core, and the UserViewModel is the stateful shell.
 
-^ Although User is a struct, the view model can still update its `user` property by transforming the struct and keeping the new version. Any consumers that read the property before this point will still retain their version, avoiding scary action at a distance.
+^ Although User is a struct, the view model can still update its `user` property by transforming the struct and keeping the new version. Any consumers that read the property before this point will still have their version, avoiding scary action at a distance.
 
 ---
 
@@ -944,11 +944,11 @@ class MyViewController: UIViewController {
 # [fit] Explicit dependencies
 # [fit] More flexible
 
-^ Singletons are notoriously difficult to test, and usually involve ridiculous levels of mocking and stubbing. With the instance-based approach, we can avoid all that by creating a special API client subclass for testing, and passing that in. Bam, the view controller is no longer hitting the network.
+^ Singletons are difficult to test, and usually involve mocking and stubbing. With the instance-based approach, we can avoid that by subclassing the client for testing, and passing that in.
 
-^ In addition, the fact that the view controller depends upon the API client is now made clear. It’s not left implicit. This helps readers understand the responsibilities that the VC has.
+^ In addition, the fact that the view controller depends upon the API client is now made explicit. This helps readers understand the responsibilities that the VC has.
 
-^ Finally, the API client has become more flexible. Let’s say you want to support multiple logins in the future. You could now just represent that with two separate instances of the API client, one per user. With a singleton, you’d have a very hard time retrofitting that kind of functionality.
+^ Finally, the API client has become more flexible. If you want to support multiple logins, you can represent that with two separate instances of the API client, one per user. With a singleton, you’d have a very hard time retrofitting that kind of functionality.
 
 ---
 
