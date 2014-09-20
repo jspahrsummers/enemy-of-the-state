@@ -863,7 +863,7 @@ class UserViewModel {
 
 ---
 
-# _Example:_ Singleton Networking
+# [fit] _Example:_ Singleton Networking
 
 ```swift
 class APIClient {
@@ -885,7 +885,7 @@ class APIClient {
 
 ---
 
-# _Example:_ Singleton Networking
+# [fit] _Example:_ Singleton Networking
 
 ```swift
 class MyViewController: UIViewController {
@@ -903,7 +903,7 @@ class MyViewController: UIViewController {
 
 ---
 
-# _Example:_ Instance Networking
+# [fit] _Example:_ Instance Networking
 
 ```swift
 class APIClient {
@@ -916,7 +916,7 @@ class APIClient {
 
 ---
 
-# _Example:_ Instance Networking
+# [fit] _Example:_ Instance Networking
 
 ```swift
 class MyViewController: UIViewController {
