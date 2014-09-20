@@ -5,7 +5,7 @@
 
 ---
 
-![autoplay](nyantocat.mov)
+![autoplay](Media/nyantocat.mov)
 
 ^ First of all, let me introduce myself. My name is Justin Spahr-Summers, and I work on GitHub for Mac and GitHub for Windows.
 
@@ -98,7 +98,7 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 
 ---
 
-![fill](sadmac.png)
+![fill](Media/sadmac.png)
 
 ^ The biggest problem with state is that it can “go bad.” Any time you’ve restarted your computer or an app to fix an issue, you’ve been a victim of state.
 
@@ -191,7 +191,7 @@ _See Andy Matuschak’s post, “Mutability, aliasing, and the caches you didn�
 
 ---
 
-![fit](raceconditions.jpg)
+![fit](Media/raceconditions.jpg)
 
 ^ Race conditions occur when multiple threads try to use the same state at the same time. If anything is modifying the state concurrently, you can see inconsistency at best, or corruption at worst.
 
@@ -222,7 +222,7 @@ println(y)
 
 **==> 10 (?!?!)**
 
-![fit](rageface.png)
+![fit](Media/rageface.png)
 
 ^ For example, reading a simple property at two different times can result in two different values. As a consumer, it might be hard to predict why.
 
@@ -270,7 +270,7 @@ id viewController = partialMockForViewController();
 
 _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
-![fit](trollface.png)
+![fit](Media/trollface.png)
 
 ^ This (slightly modified) test verifies that a fetched results controller successfully updates after a managed object is deleted from the context.
 
@@ -278,7 +278,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 
 ---
 
-![](state.gif)
+![](Media/state.gif)
 
 ^ I don't really have any commentary for this GIF. It's just amazing.
 
@@ -571,7 +571,7 @@ println(y)
 
 **==> still 5!**
 
-![](successkid.jpg)
+![](Media/successkid.jpg)
 
 ^ By reading the value `myData` into a constant, we know that it (and its `someInt` property) won't change between reads.
 
@@ -789,8 +789,8 @@ _See Gary Bernhardt’s talk, “Boundaries”_
 
 # Model-View-ViewModel
 
-![inline](mvc.png)
-![inline](mvvm.png)
+![inline](Media/mvc.png)
+![inline](Media/mvvm.png)
 
 ^ Model-View-ViewModel is actually a great example of this “stateless core” design. MVVM (depicted here, on the bottom) involves replacing the omniscient controller of MVC with a less ambitious “view model” object. The view model is actually owned by the view, and behaves like an adapter of the model.
 
@@ -821,7 +821,7 @@ class UserViewModel {
 # [fit] Globals:
 # [fit] Just Say No
 
-![fit](DARE_logo.png)
+![fit](Media/DARE_logo.png)
 
 ^ I want to briefly talk about the most egregious of all state: the global variable.
 
@@ -831,7 +831,7 @@ class UserViewModel {
 # [fit] every part
 # [fit] of your program
 
-![fit](DARE_logo.png)
+![fit](Media/DARE_logo.png)
 
 ^ Globals are even more dangerous than other forms of state, because they get complected (mixed in with) every other part of your program. The dependencies are all implicit, and components get more coupled together.
 
@@ -840,7 +840,7 @@ class UserViewModel {
 # [fit] Isolation reduces complexity
 # [fit] Globals compound it
 
-![fit](DARE_logo.png)
+![fit](Media/DARE_logo.png)
 
 ^ Global variables are, in fact, the exact opposite of good isolation. Instead of isolating the state, it blankets everything.
 
@@ -849,7 +849,7 @@ class UserViewModel {
 # [fit] Singletons
 # [fit] are global state
 
-![fit](DARE_logo.png)
+![fit](Media/DARE_logo.png)
 
 ^ We all know this, but don’t like to acknowledge it. Singletons are just glorified global variables! They suffer from all of the problems I was just talking about, we’ve just combined all of the problems into one magical object.
 
