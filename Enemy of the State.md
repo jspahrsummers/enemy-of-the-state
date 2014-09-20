@@ -107,7 +107,7 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 # [fit] Complexity
 # [fit] Mixing (“complecting”) concepts or concerns
 
-^ State is complex because it mixes together completely unrelated components of your application. When the state of one component depends on the state of another, and so on—like in the crashing example—suddenly all of them have gotten coupled and tied together, when they don’t need to be.
+^ State is complex because it mixes together completely unrelated components of your application. When the state of one component depends on the state of another, and so on all of them have gotten coupled and tied together, when they don’t need to be. This is usually where state “goes bad.”
 
 ---
 
