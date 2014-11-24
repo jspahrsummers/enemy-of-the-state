@@ -112,7 +112,7 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 # [fit] familiar
 # (but complex)
 
-^ To use another example, it’s definitely _easy_ to put model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary in one format but get something else).
+^ To use another example, it’s definitely _easy_ to put model data into dictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary in one format but get something else).
 
 ---
 
