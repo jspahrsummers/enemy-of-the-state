@@ -159,7 +159,6 @@ _See Moseley and Marks’ paper, “Out of the Tar Pit”_
 ---
 
 # [fit] Table views as a cache
-# (as a service)
 
 ```swift
 @IBAction func addBlankRow(sender: AnyObject!) {
