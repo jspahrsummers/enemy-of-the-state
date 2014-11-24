@@ -379,19 +379,10 @@ var p = Point(x: 5, y: 10)
 ```swift
 var p = Point(x: 5, y: 10)
 p.x = 7     // p = (7, 10)
+p.scale(2)  // p = (14, 20)
 ```
 
 ^ And then, seemingly, write straight to it.
-
----
-
-# [fit] “Mutating” a struct in Swift
-
-```swift
-var p = Point(x: 5, y: 10)
-p.x = 7     // p = (7, 10)
-p.scale(2)  // p = (14, 20)
-```
 
 ^ Likewise, we can call our mutating method, and it appears that the point has changed in place. But what does it mean for it to have changed “in place?”
 
@@ -443,24 +434,12 @@ let q = p
 
 p.scale(2)  // p = (10, 20)
             // q = (5, 10)
-```
-
-^ Looking at the code again, the only difference between 'p' and 'q' is the variable declaration. We’ve declared that the variable 'q' may never change. What this really means is that the value _stored in_ 'p' is allowed to be replaced, while the value _stored in_ 'q' is not.
-
----
-
-# [fit] “Mutating” a struct in Swift
-
-```swift
-var p = Point(x: 5, y: 10)
-let q = p
-
-p.scale(2)  // p = (10, 20)
-            // q = (5, 10)
 
 q.x = 2
 q.scale(2)  // Error!
 ```
+
+^ Looking at the code again, the only difference between 'p' and 'q' is the variable declaration. We’ve declared that the variable 'q' may never change. What this really means is that the value _stored in_ 'p' is allowed to be replaced, while the value _stored in_ 'q' is not.
 
 ^ Consequently, any attempts to update the value in 'q' will fail.
 
