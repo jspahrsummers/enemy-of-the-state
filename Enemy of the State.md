@@ -342,7 +342,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 > But I can set the properties of a struct in Swift! This guy doesn’t know what he’s talking about.
 —You, the audience
 
-^ I’ve said that values are immutable multiple times now, but it might be hard to see why. Let’s dig into an example.
+^ I’ve said that values are immutable, but it might be hard to see why. Let’s dig into an example.
 
 ---
 
@@ -517,7 +517,7 @@ mutating func scale(inout self: Point, factor: Double) {
 
 ^ The mutating method needs an `inout` version of `self`, and this is the key to the whole mutability model. What this function is doing then, is accepting a copy of the Point, transforming it, and storing it back to the caller.
 
-^ But storage is a feature of _variables_, not values. We’ve come full circle. The method is only “mutating” because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so “mutating” methods cannot be used.
+^ But storage is a feature of _variables_, not values. The method is only “mutating” because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so “mutating” methods cannot be used.
 
 ---
 
@@ -576,7 +576,7 @@ println(y)
 ## [fit] Purity
 ## Isolation
 
-^ In addition to value types, so-called “pure” algorithms are another great way to eliminate state.
+^ In addition to value types, pure algorithms are another great way to eliminate state.
 
 ---
 
@@ -949,7 +949,7 @@ class MyViewController: UIViewController {
 # Purity
 # Isolation
 
-^ Alright, whew. We’ve looked at how value types and pure algorithms can avoid state entirely, and how isolation can reduce the impact of state.
+^ We’ve looked at how value types and pure algorithms can avoid state entirely, and how isolation can reduce the impact of state.
 
 ^ Keeping these principles in mind will help you minimize the complexity of your programs, and make it easier to adopt functional programming practices.
 
