@@ -842,23 +842,7 @@ class APIClient {
 
 ^ Let’s look at an example. Here we have a typical API client class, with a singleton as you would write it in Swift.
 
----
-
-# [fit] _Example:_ Singleton Networking
-
-```swift
-class MyViewController: UIViewController {
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-
-		APIClient.sharedClient.fetchCategories()
-	}
-}
-```
-
-^ A view controller might use it like this. Just grab the global variable (the singleton), and do some stuff with it.
-
-^ Let’s rewrite this, but pass an instance to the view controller instead of using a singleton.
+^ Any time a view controller needs to make a network request, it would probably grab the global variable (the singleton), and do some stuff with it.
 
 ---
 
@@ -903,7 +887,7 @@ class MyViewController: UIViewController {
 # [fit] Explicit dependencies
 # [fit] More flexible
 
-^ Singletons are difficult to test, and usually involve mocking and stubbing. With the instance-based approach, we can avoid that by subclassing the client for testing, and passing that in.
+^ Singletons are difficult to test, and usually involve mocking and stubbing. With the instance-based approach, we can create a protocol, a test client that implements it, and then simply pass that in instead of the real version.
 
 ^ In addition, the fact that the view controller depends upon the API client is now made explicit. This helps readers understand the responsibilities that the VC has.
 
