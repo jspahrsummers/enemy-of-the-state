@@ -199,8 +199,6 @@ _See Andy Matuschak’s post, “Mutability, aliasing, and the caches you didn�
 > [State is] **spooky action at a distance**
 —Albert Einstein **_(probably)_**
 
-^ This term of his was actually about quantum entanglement, but the parallels are astounding.
-
 ---
 
 # State is unpredictable
@@ -621,8 +619,6 @@ struct Array {
 ---
 
 > Insanity is doing the same thing over and over again but expecting **different results**.
-
-^ It’s actually pretty insane that we put up with this. Pure functions are so much simpler and sane.
 
 ---
 
