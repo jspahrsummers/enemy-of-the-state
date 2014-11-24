@@ -622,6 +622,13 @@ struct Array {
 
 ---
 
+# [fit] Pure functions are
+# [fit] easily tested
+
+^ Pure algorithms are also easier to test, because you're just testing a transformation of input to output.
+
+---
+
 # [fit] _Example:_ Impure formatting
 
 ```swift
@@ -637,6 +644,8 @@ func formattedCurrentTime() -> String {
 ```
 
 ^ This function, which formats the current time, seems simple enough. However, it's impure—each invocation will return a slightly different string. This could result in surprising behavior if the function is somehow called too early or late.
+
+^ Now consider how you’d test this function. How would you verify that the formatted string is correct for the _current date_, since it can vary in your tests? Most possible answers to this question are terrible.
 
 ---
 
@@ -654,50 +663,7 @@ func formattedTimeFromDate(date: NSDate) -> String {
 
 ^ Here's the pure equivalent. We've not lost anything, and in fact have even _gained_ expressive power. If the caller wants to pass in the current date, they can do that, or they can pass in some date object that they already had.
 
----
-
-# [fit] Pure functions are
-# [fit] easily tested
-
-^ Besides being more flexible to use, pure algorithms are easier to test, because you're just testing a transformation of input to output.
-
----
-
-# _Example:_ Testing impurity
-
-```swift
-let original = formattedCurrentTime()
-
-NSThread.sleepForTimeInterval(1)
-
-let updated = formattedCurrentTime()
-
-XCTAssertNotEqual(original, updated,
-	"Formatted dates should differ after a second")
-```
-
-^ Let's say we want to verify that the formatted date includes seconds. We don't want to duplicate the date formatter in the tests, because that defeats the purpose. Instead, our test could be whether the formatted string is different after one second.
-
-^ This test will do what we want, but it sucks that we have to sleep for a second. We could also mock NSDate, but… gross.
-
----
-
-# _Example:_ Testing purity
-
-```swift
-let date = NSDate()
-let original = formattedTimeFromDate(date)
-
-let oneSecondLater = date.dateByAddingTimeInterval(1)
-let updated = formattedTimeFromDate(oneSecondLater)
-
-XCTAssertNotEqual(original, updated,
-	"Formatted dates should differ across one second")
-```
-
-^ With the pure version of our function, we don't need mocking, and we don't need sleeping. We just construct the dates we want, and pass them in.
-
-^ Purity makes testing easier because you only need to construct the desired inputs and test the intended output. There's no reliance upon external state anymore.
+^ This makes testing super easy, too, because you can now create a _known_ date to test against, and the output should be the same every time.
 
 ---
 
