@@ -4,9 +4,16 @@
 
 ---
 
+# [fit] Presentation available at
+# [fit] github.com/jspahrsummers/enemy-of-the-state
+
+^ Before I get started, I want to point out that all of these slides, and my notes, are available on GitHub. The README of this repository also contains links to every paper, talk, and post that I’ll referenced here.
+
+---
+
 ![autoplay](Media/nyantocat.mov)
 
-^ First of all, let me introduce myself. My name is Justin Spahr-Summers, and I work on GitHub for Mac and GitHub for Windows.
+^ Now, let me introduce myself. My name is Justin Spahr-Summers, and I work on GitHub for Mac and GitHub for Windows.
 
 ---
 
@@ -929,9 +936,5 @@ class MyViewController: UIViewController {
 
 ---
 
-# [fit] Presentation available at
-# [fit] github.com/jspahrsummers/enemy-of-the-state
-
-^ All of these slides, and my notes, are available on GitHub. The README of this repository also contains links to every paper, talk, and post that I’ve referenced here.
 
 ^ Thank you!
