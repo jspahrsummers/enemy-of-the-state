@@ -1,7 +1,6 @@
 # [fit] Enemy of the State
-### _(Swift edition!)_
 
-^ I’m going to talk today about that evil word: state. Well, maybe it’s just me who finds it evil, but that’s exactly what I want to talk about. I hope to show how state is the single biggest source of needless complexity in software development, and what we can do to address that, with the ultimate goal of making our programs simpler and better.
+^ I’m going to talk today about state, why it’s the single biggest source of needless complexity in software development, and what we can do to address that. Although state is not directly related to functional programming, statelessness and pure algorithms play a key role in many functional concepts, and the use of state can make FP significantly more difficult.
 
 ---
 
@@ -14,7 +13,7 @@
 # [fit] Programming is all about
 # [fit] abstraction
 
-^ Why this talk? I could talk about concrete things, like RAC or building native apps at GitHub. However, I want to impart abstract knowledge, so this will be a less concrete talk.
+^ Why this talk specifically? I could talk about something more concrete, like ReactiveCocoa. However, I want to impart abstract knowledge, so this will be a less concrete talk.
 
 ^ Don’t let your eyes glaze over, though, because programming is all about abstraction, and an understanding of theory is hugely important for solving practical, real world problems.
 
@@ -24,9 +23,7 @@
 # [fit] best possible
 # [fit] abstractions for development
 
-^ The right abstractions can reduce complexity, increase reliability, maintainability, and confidence in your code.
-
-^ It’s like the transition from assembly to higher-level programming languages. Higher-level languages offer more convenience, tools for managing complexity, safety, etc. They do this by offering more powerful abstractions.
+^ That’s why we’re all here, right? Functional programming itself is just one kind of abstraction. The right abstractions can reduce complexity, increase reliability, maintainability, and confidence in your code.
 
 ---
 
