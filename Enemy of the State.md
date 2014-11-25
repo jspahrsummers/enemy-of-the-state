@@ -936,5 +936,8 @@ class MyViewController: UIViewController {
 
 ---
 
+# [fit] Thanks to…
+Andy Matuschak, Dave Lee, Rob Rix, Matt Diephouse, Josh Vera, Josh Abernathy, Robert Böhnke, Keith Duncan, Landon Fuller, Maxwell Swadling, Alan Rogers, Luke Hefson
+# [fit] and you!
 
 ^ Thank you!
