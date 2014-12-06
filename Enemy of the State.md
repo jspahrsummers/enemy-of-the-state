@@ -579,44 +579,6 @@ struct Array {
 
 ---
 
-# [fit] _Example:_ Impure formatting
-
-```swift
-func formattedCurrentTime() -> String {
-	let now = NSDate()
-
-	let formatter = NSDateFormatter()
-	formatter.timeStyle =
-		NSDateFormatterStyle.MediumStyle
-
-	return formatter.stringFromDate(now)
-}
-```
-
-^ This function, which formats the current time, seems simple enough. However, it's impure—each invocation will return a slightly different string. This could result in surprising behavior if the function is somehow called too early or late.
-
-^ Now consider how you’d test this function. How would you verify that the formatted string is correct for the _current date_, since it can vary in your tests? Most possible answers to this question are terrible.
-
----
-
-# [fit] _Example:_ Pure formatting
-
-```swift
-func formattedTimeFromDate(date: NSDate) -> String {
-	let formatter = NSDateFormatter()
-	formatter.timeStyle =
-		NSDateFormatterStyle.MediumStyle
-
-	return formatter.stringFromDate(date)
-}
-```
-
-^ Here's the pure equivalent. We've not lost anything, and in fact have even _gained_ expressive power. If the caller wants to pass in the current date, they can do that, or they can pass in some date object that they already had.
-
-^ This makes testing super easy, too, because you can now create a _known_ date to test against, and the output should be the same every time.
-
----
-
 ## Values
 ## Purity
 ## [fit] Isolation
