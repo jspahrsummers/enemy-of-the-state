@@ -244,6 +244,41 @@ println(y)
 
 ---
 
+# [fit] _Example:_ Testing Core Data
+
+```objc
+id managedObject = [OCMockObject mockForClass:[NSManagedObject class]];
+id context = [OCMockObject
+	mockForClass:[NSManagedObjectContext class]];
+
+[[context expect] deleteObject:managedObject];
+[[[context stub] andReturnValue:@YES] save:[OCMArg anyObjectRef]];
+
+id resultsController = [OCMockObject
+	mockForClass:[NSFetchedResultsController class]];
+
+[[[resultsController stub] andReturn:context] managedObjectContext];
+[[[resultsController stub] andReturn:managedObject]
+	objectAtIndexPath:OCMOCK_ANY];
+
+id viewController = partialMockForViewController();
+[[[viewController stub] andReturn:resultsController]
+	fetchedResultsController];
+
+[viewController deleteObjectAtIndexPath:nil];
+[context verify];
+```
+
+_from Ash Furrow’s C-41 project (sorry, Ash!)_
+
+![fit](Media/trollface.png)
+
+^ This (slightly modified) test verifies that a fetched results controller successfully updates after a managed object is deleted from the context.
+
+^ It uses mocks and stubs to avoid actually manipulating a database (which is a form of state). Stateless code requires less mocking and stubbing, since the output of a method depends only on its input!
+
+---
+
 ![](Media/state.gif)
 
 ^ I don't really have any commentary for this GIF. It's just amazing.
