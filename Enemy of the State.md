@@ -308,7 +308,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 # Purity
 # Isolation
 
-^ Here are three of my favorite techniques for minimizing the complexity of state, all of which are used extensively in functional programming. Let’s go through each one in turn.
+^ Here are three of my favorite techniques for minimizing the complexity of state. Let’s go through each one in turn.
 
 ---
 
@@ -920,7 +920,7 @@ class MyViewController: UIViewController {
 
 ^ We’ve looked at how value types and pure algorithms can avoid state entirely, and how isolation can reduce the impact of state.
 
-^ Keeping these principles in mind will help you minimize the complexity of your programs, and make it easier to adopt functional programming practices.
+^ Keeping these principles in mind will help you minimize the complexity of your programs.
 
 ---
 
@@ -940,7 +940,7 @@ class MyViewController: UIViewController {
 
 # [fit] Learning More
 
-^ Hopefully this has helped explain why state is harmful and mostly unnecessary. If you’re interested in learning more (outside of the conference you’re already attending, of course), here are some resources I’d recommend.
+^ Hopefully this has given you a taste of what’s possible outside of the “traditional” stateful approaches to application design. The info out there far exceeds what anyone could present in an hour, so here are some additional resources.
 
 ---
 
