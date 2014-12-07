@@ -5,9 +5,16 @@
 
 ---
 
+# [fit] Presentation available at
+# [fit] github.com/jspahrsummers/enemy-of-the-state
+
+^ Before I get started, I want to point out that all of these slides, and my notes, are available on GitHub. The README of this repository also contains links to every paper, talk, and post that I’ll referenced here.
+
+---
+
 ![autoplay](Media/nyantocat.mov)
 
-^ First of all, let me introduce myself. My name is Justin Spahr-Summers, and I work on GitHub for Mac and GitHub for Windows.
+^ Now, let me introduce myself. My name is Justin Spahr-Summers, and I work on GitHub for Mac and GitHub for Windows.
 
 ---
 
@@ -115,7 +122,7 @@ _See Rich Hickey’s talk, “Simple Made Easy”_
 # [fit] familiar
 # (but complex)
 
-^ To use another example, it’s definitely _easy_ to put model data into NSDictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary in one format but get something else).
+^ To use another example, it’s definitely _easy_ to put model data into dictionaries instead of creating purpose-specific classes. Everyone understands dictionaries, and creating them takes less effort, but ultimately they make your code more complex and error-prone (for example, if you expect a dictionary in one format but get something else).
 
 ---
 
@@ -162,7 +169,6 @@ _See Moseley and Marks’ paper, “Out of the Tar Pit”_
 ---
 
 # [fit] Table views as a cache
-# (as a service)
 
 ```swift
 @IBAction func addBlankRow(sender: AnyObject!) {
@@ -201,8 +207,6 @@ _See Andy Matuschak’s post, “Mutability, aliasing, and the caches you didn�
 
 > [State is] **spooky action at a distance**
 —Albert Einstein **_(probably)_**
-
-^ This term of his was actually about quantum entanglement, but the parallels are astounding.
 
 ---
 
@@ -292,7 +296,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 - In-memory or on-disk caches
 - UI appearance and content
 
-^ Most applications require some state, and that’s okay. Here are some examples of state being necessary and helpful for solving a particular problem. These are part of the _essential_ complexity of your application.
+^ Most Cocoa applications require some state, and that’s okay. Here are some examples of state being necessary and helpful for solving a particular problem. These are part of the _essential_ complexity of your application.
 
 ---
 
@@ -347,7 +351,7 @@ _from Ash Furrow’s C-41 project (sorry, Ash!)_
 > But I can set the properties of a struct in Swift! This guy doesn’t know what he’s talking about.
 —You, the audience
 
-^ I’ve said that values are immutable multiple times now, but it might be hard to see why. Let’s dig into an example.
+^ I’ve said that values are immutable, but it might be hard to see why. Let’s dig into an example.
 
 ---
 
@@ -384,19 +388,10 @@ var p = Point(x: 5, y: 10)
 ```swift
 var p = Point(x: 5, y: 10)
 p.x = 7     // p = (7, 10)
+p.scale(2)  // p = (14, 20)
 ```
 
 ^ And then, seemingly, write straight to it.
-
----
-
-# [fit] “Mutating” a struct in Swift
-
-```swift
-var p = Point(x: 5, y: 10)
-p.x = 7     // p = (7, 10)
-p.scale(2)  // p = (14, 20)
-```
 
 ^ Likewise, we can call our mutating method, and it appears that the point has changed in place. But what does it mean for it to have changed “in place?”
 
@@ -448,24 +443,12 @@ let q = p
 
 p.scale(2)  // p = (10, 20)
             // q = (5, 10)
-```
-
-^ Looking at the code again, the only difference between 'p' and 'q' is the variable declaration. We’ve declared that the variable 'q' may never change. What this really means is that the value _stored in_ 'p' is allowed to be replaced, while the value _stored in_ 'q' is not.
-
----
-
-# [fit] “Mutating” a struct in Swift
-
-```swift
-var p = Point(x: 5, y: 10)
-let q = p
-
-p.scale(2)  // p = (10, 20)
-            // q = (5, 10)
 
 q.x = 2
 q.scale(2)  // Error!
 ```
+
+^ Looking at the code again, the only difference between 'p' and 'q' is the variable declaration. We’ve declared that the variable 'q' may never change. What this really means is that the value _stored in_ 'p' is allowed to be replaced, while the value _stored in_ 'q' is not.
 
 ^ Consequently, any attempts to update the value in 'q' will fail.
 
@@ -522,7 +505,7 @@ mutating func scale(inout self: Point, factor: Double) {
 
 ^ The mutating method needs an `inout` version of `self`, and this is the key to the whole mutability model. What this function is doing then, is accepting a copy of the Point, transforming it, and storing it back to the caller.
 
-^ But storage is a feature of _variables_, not values. We’ve come full circle. The method is only “mutating” because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so “mutating” methods cannot be used.
+^ But storage is a feature of _variables_, not values. The method is only “mutating” because it can write to the variable at the call site. If the variable is read-only (defined with `let`), it cannot be written to, so “mutating” methods cannot be used.
 
 ---
 
@@ -581,7 +564,7 @@ println(y)
 ## [fit] Purity
 ## Isolation
 
-^ In addition to value types, so-called “pure” algorithms are another great way to eliminate state.
+^ In addition to value types, pure algorithms are another great way to eliminate state.
 
 ---
 
@@ -624,8 +607,6 @@ struct Array {
 ---
 
 > Insanity is doing the same thing over and over again but expecting **different results**.
-
-^ It’s actually pretty insane that we put up with this. Pure functions are so much simpler and sane.
 
 ---
 
@@ -883,23 +864,7 @@ class APIClient {
 
 ^ Let’s look at an example. Here we have a typical API client class, with a singleton as you would write it in Swift.
 
----
-
-# [fit] _Example:_ Singleton Networking
-
-```swift
-class MyViewController: UIViewController {
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-
-		APIClient.sharedClient.fetchCategories()
-	}
-}
-```
-
-^ A view controller might use it like this. Just grab the global variable (the singleton), and do some stuff with it.
-
-^ Let’s rewrite this, but pass an instance to the view controller instead of using a singleton.
+^ Any time a view controller needs to make a network request, it would probably grab the global variable (the singleton), and do some stuff with it.
 
 ---
 
@@ -944,7 +909,7 @@ class MyViewController: UIViewController {
 # [fit] Explicit dependencies
 # [fit] More flexible
 
-^ Singletons are difficult to test, and usually involve mocking and stubbing. With the instance-based approach, we can avoid that by subclassing the client for testing, and passing that in.
+^ Singletons are difficult to test, and usually involve mocking and stubbing. With the instance-based approach, we can create a protocol, a test client that implements it, and then simply pass that in instead of the real version.
 
 ^ In addition, the fact that the view controller depends upon the API client is now made explicit. This helps readers understand the responsibilities that the VC has.
 
@@ -956,7 +921,7 @@ class MyViewController: UIViewController {
 # Purity
 # Isolation
 
-^ Alright, whew. We’ve looked at how value types and pure algorithms can avoid state entirely, and how isolation can reduce the impact of state.
+^ We’ve looked at how value types and pure algorithms can avoid state entirely, and how isolation can reduce the impact of state.
 
 ^ Keeping these principles in mind will help you minimize the complexity of your programs.
 
@@ -1008,9 +973,8 @@ class MyViewController: UIViewController {
 
 ---
 
-# [fit] Presentation available at
-# [fit] github.com/jspahrsummers/enemy-of-the-state
-
-^ All of these slides, and my notes, are available on GitHub. The README of this repository also contains links to every paper, talk, and post that I’ve referenced here.
+# [fit] Thanks to…
+Andy Matuschak, Dave Lee, Rob Rix, Matt Diephouse, Josh Vera, Josh Abernathy, Robert Böhnke, Keith Duncan, Landon Fuller, Maxwell Swadling, Alan Rogers, Luke Hefson
+# [fit] and you!
 
 ^ Thank you!
