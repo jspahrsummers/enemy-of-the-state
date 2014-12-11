@@ -12,7 +12,7 @@
 
 ---
 
-![autoplay](Media/nyantocat.mov)
+![autoplay|loop](Media/nyantocat.mov)
 
 ^ Now, let me introduce myself. My name is Justin Spahr-Summers, and I work on GitHub for Mac and GitHub for Windows.
 
