@@ -57,7 +57,7 @@
 # Variables are state
 
 ```swift
-var x: Int
+var a: Int
 
 // Store a value into the variable
 a = 5
