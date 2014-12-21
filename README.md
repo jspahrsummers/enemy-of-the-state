@@ -1,6 +1,6 @@
 # Enemy of the State
 
-Presented at [CocoaConf Mini Austin](http://cocoaconf.com/austin-2014/sessions/enemy-of-state) in April 2014, [CocoaConf Las Vegas](http://cocoaconf.com/lasvegas-2014/sessions/enemy-of-state) in September 2014, and the [Functional Swift Conference](http://2014.funswiftconf.com/) in December 2014.
+Presented at [CocoaConf Mini Austin](http://cocoaconf.com/austin-2014/sessions/enemy-of-state) in April 2014, [CocoaConf Las Vegas](http://cocoaconf.com/lasvegas-2014/sessions/enemy-of-state) in September 2014, and the [Functional Swift Conference](http://2014.funswiftconf.com/speakers/justin.html) ([video](https://www.youtube.com/watch?v=7AqXBuJOJkY)) in December 2014.
 
 [This presentation](Enemy of the State.md) is designed for [Deckset](http://decksetapp.com/) theme “Next”.
 
