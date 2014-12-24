@@ -14,7 +14,7 @@ Here are some links to material referenced in the talk:
  * [Out of the Tar Pit](http://shaffner.us/cs/papers/tarpit.pdf) by Moseley and Marks
  * [Mutability, aliasing, and the caches you didn’t know you had](https://garbagecollective.quora.com/Mutability-aliasing-and-the-caches-you-didnt-know-you-had) by Andy Matuschak
  * [Boundaries](https://www.destroyallsoftware.com/talks/boundaries) by Gary Bernhardt
- * “Advanced iOS Application Architecture and Patterns” from [WWDC 2014](https://developer.apple.com/videos/wwdc/2014/) by Andy Matuschak and Colin Barrett
+ * “Advanced iOS Application Architecture and Patterns” from [WWDC 2014](https://developer.apple.com/videos/wwdc/2014/#229) by Andy Matuschak and Colin Barrett
  * [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)
  * Haskell's [official website](http://www.haskell.org), or my preferred tutorial, [Real World Haskell](http://book.realworldhaskell.org/)
  * [Elm](http://elm-lang.org)
