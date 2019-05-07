@@ -1,7 +1,5 @@
 import UIKit
 
-
-
 struct Point {
 	var x = 0.0
 	var y = 0.0
@@ -16,11 +14,9 @@ var p = Point(x: 5, y: 10)
 let q = p
 
 p.x = 7
-p.scale(2)
+p.scale(factor: 2)
 
 q
-
-
 
 class APIClient {
 	class var sharedClient: APIClient {
@@ -34,39 +30,33 @@ class APIClient {
 
 APIClient.sharedClient
 
-
-
 class MyViewController: UITableViewController {
 	var items: [String] = []
 
 	@IBAction func addBlankRow(sender: AnyObject) {
 		self.items.append("")
 
-		let indexPath = NSIndexPath(forRow: self.items.count, inSection: 0)
-		self.tableView.insertRowsAtIndexPaths([ indexPath ], withRowAnimation: UITableViewRowAnimation.Automatic)
+		let indexPath = IndexPath(row: self.items.count, section: 0)
+		self.tableView.insertRows(at: [ indexPath ], with: .automatic)
 	}
 }
 
-
-
 func formattedCurrentTime() -> String {
-	let now = NSDate()
+	let now = Date()
 
-	let formatter = NSDateFormatter()
-	formatter.timeStyle = NSDateFormatterStyle.MediumStyle
+	let formatter = DateFormatter()
+	formatter.timeStyle = .medium
 
-	return formatter.stringFromDate(now)
+	return formatter.string(from: now)
 }
 
 formattedCurrentTime()
 
+func formattedTimeFromDate(date: Date) -> String {
+	let formatter = DateFormatter()
+	formatter.timeStyle = .medium
 
-
-func formattedTimeFromDate(date: NSDate) -> String {
-	let formatter = NSDateFormatter()
-	formatter.timeStyle = NSDateFormatterStyle.MediumStyle
-
-	return formatter.stringFromDate(date)
+	return formatter.string(from: date)
 }
 
-formattedTimeFromDate(NSDate())
+formattedTimeFromDate(date: Date())
